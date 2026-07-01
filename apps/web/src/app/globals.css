@@ -1,0 +1,84 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ── GeoAfric Design Tokens ──────────────────────────────────────────────── */
+:root {
+  --ga-navy:   #080F20;
+  --ga-blue:   #0D1B3D;
+  --ga-green:  #00B67A;
+  --ga-teal:   #00E6D2;
+  --ga-gold:   #F5A623;
+  --ga-bg:     #F0F2F8;
+  --font-sora: 'Sora', sans-serif;
+  --font-dm:   'DM Sans', sans-serif;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  font-family: var(--font-dm);
+  background: var(--ga-bg);
+  margin: 0;
+}
+
+/* ── Scrollbar ───────────────────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: rgba(13,27,61,0.15); border-radius: 999px; }
+::-webkit-scrollbar-thumb:hover { background: rgba(13,27,61,0.25); }
+
+/* ── Animations ──────────────────────────────────────────────────────────── */
+@keyframes ga-pulse {
+  0%, 100% { box-shadow: 0 0 6px rgba(0,182,122,0.6); opacity: 1; }
+  50% { box-shadow: 0 0 14px rgba(0,182,122,0.9); opacity: 0.8; }
+}
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+/* ── Sidebar responsive ──────────────────────────────────────────────────── */
+.ga-sidebar-close  { display: none; }
+.ga-hamburger      { display: none; }
+.ga-mobile-overlay { display: none; }
+
+@media (max-width: 768px) {
+  .ga-sidebar {
+    position: fixed !important;
+    top: 0; left: 0;
+    transform: translateX(-100%);
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  .ga-sidebar.open     { transform: translateX(0) !important; }
+  .ga-sidebar-close    { display: flex !important; }
+  .ga-hamburger        { display: flex !important; }
+  .ga-mobile-overlay   { display: block !important; }
+}
+
+/* ── Dashboard grid breakpoints ──────────────────────────────────────────── */
+@media (max-width: 1100px) {
+  .stats-grid { grid-template-columns: repeat(2, 1fr) !important; }
+}
+@media (max-width: 900px) {
+  .main-grid       { grid-template-columns: 1fr !important; }
+  .hero-grid       { grid-template-columns: 1fr !important; }
+  .presence-widget { display: none !important; }
+}
+@media (max-width: 600px) {
+  .stats-grid   { grid-template-columns: 1fr !important; }
+  .actions-grid { grid-template-columns: 1fr !important; }
+  .solar-stats  { grid-template-columns: 1fr !important; }
+  .solar-main   { grid-template-columns: 1fr !important; }
+}
+
+/* Wave hand animation */
+@keyframes ga-wave {
+  0%   { transform: rotate(  0deg); }
+  10%  { transform: rotate(-14deg); }
+  20%  { transform: rotate( 12deg); }
+  30%  { transform: rotate(-10deg); }
+  40%  { transform: rotate(  9deg); }
+  50%  { transform: rotate(  0deg); }
+  100% { transform: rotate(  0deg); }
+}

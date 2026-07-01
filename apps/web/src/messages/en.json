@@ -1,0 +1,310 @@
+{
+  "common": {
+    "appName": "GeoAfric",
+    "tagline": "Connecting People. Protecting What Matters.",
+    "loading": "Loading…",
+    "save": "Save changes",
+    "saving": "Saving…",
+    "cancel": "Cancel",
+    "back": "Back",
+    "continue": "Continue",
+    "skip": "Skip for now",
+    "complete": "Complete Setup",
+    "signOut": "Sign out",
+    "freePlan": "Free Plan",
+    "soon": "Soon",
+    "close": "Close",
+    "delete": "Delete",
+    "edit": "Edit",
+    "create": "Create",
+    "invite": "Invite",
+    "join": "Join",
+    "leave": "Leave",
+    "refresh": "Refresh",
+    "generate": "Generate",
+    "markRead": "Mark read",
+    "noData": "No data yet"
+  },
+  "nav": {
+    "location": "Location",
+    "health": "Health",
+    "discover": "Discover",
+    "solarTrack": "SolarTrack",
+    "family": "Family",
+    "settings": "Settings",
+    "dashboard": "Dashboard"
+  },
+  "auth": {
+    "signIn": "Sign in",
+    "signingIn": "Signing in…",
+    "signInTagline": "Sign in to your account",
+    "signUp": "Create account",
+    "signingUp": "Creating account…",
+    "signUpTagline": "Create your family account",
+    "continueWithGoogle": "Continue with Google",
+    "orSignInWithEmail": "or sign in with email",
+    "orRegisterWithEmail": "or register with email",
+    "emailAddress": "Email address",
+    "password": "Password",
+    "fullName": "Full name",
+    "phone": "Phone",
+    "phoneOptional": "(optional)",
+    "forgotPassword": "Forgot password?",
+    "noAccount": "Don't have an account?",
+    "createOne": "Create one",
+    "alreadyHaveAccount": "Already have an account?",
+    "termsNotice": "By signing up you agree to our",
+    "terms": "Terms",
+    "and": "and",
+    "privacyPolicy": "Privacy Policy",
+    "resetPassword": "Reset Password",
+    "resetTagline": "We'll send you a secure reset link",
+    "sendResetLink": "Send reset link",
+    "sending": "Sending…",
+    "checkInbox": "Check your inbox",
+    "resetSent": "If an account exists for {email}, a reset link has been sent.",
+    "backToLogin": "Back to login",
+    "newPassword": "New Password",
+    "newPasswordTagline": "Choose a strong, unique password",
+    "setNewPassword": "Set new password",
+    "updating": "Updating…",
+    "passwordUpdated": "Password updated!",
+    "redirectingToLogin": "Redirecting you to login…",
+    "signingYouIn": "Signing you in…"
+  },
+  "onboarding": {
+    "step": "Step {current} of {total}",
+    "steps": {
+      "profile": "Profile",
+      "location": "Location",
+      "emergency": "Emergency",
+      "family": "Family"
+    },
+    "profile": {
+      "title": "Tell us about yourself",
+      "subtitle": "Help us personalise your experience",
+      "fullName": "Full name",
+      "fullNamePlaceholder": "Kwame Mensah",
+      "dateOfBirth": "Date of birth",
+      "gender": "Gender",
+      "genderOptions": {
+        "preferNot": "Prefer not to say",
+        "male": "Male",
+        "female": "Female",
+        "other": "Other"
+      },
+      "phoneNumber": "Phone number",
+      "phonePlaceholder": "+233 24 123 4567",
+      "preferredLanguage": "Preferred language"
+    },
+    "location": {
+      "title": "Where are you based?",
+      "subtitle": "Used to show nearby places and alerts",
+      "country": "Country",
+      "city": "City / Town",
+      "cityPlaceholder": "e.g. Accra, Kumasi, Lagos",
+      "gpsTitle": "GPS Location",
+      "gpsNote": "Precise GPS tracking activates in Phase 2. This sets your default map region."
+    },
+    "emergency": {
+      "title": "Emergency contact",
+      "subtitle": "Who should we contact in an emergency?",
+      "notice": "This contact will be notified if a health alert or SOS is triggered. You can update this anytime in Settings.",
+      "contactName": "Contact name",
+      "contactNamePlaceholder": "e.g. Abena Mensah",
+      "contactPhone": "Contact phone",
+      "bothOptional": "Both fields are optional — you can fill them in later under Settings."
+    },
+    "family": {
+      "title": "Set up your family group",
+      "subtitle": "Invite members or skip for now",
+      "groupName": "Family group name",
+      "groupNamePlaceholder": "e.g. The Mensah Family",
+      "inviteTitle": "Invite members",
+      "inviteNote": "After setup, you'll get a unique invite code to share with family members.",
+      "skipFamily": "Skip for now — I'll set up family later",
+      "setupLater": "You can create or join a family group anytime from your dashboard.",
+      "doItNow": "Actually, I'll set one up now"
+    },
+    "welcome": "Welcome to GeoAfric! 🌍"
+  },
+  "dashboard": {
+    "greeting": {
+      "morning": "Good morning",
+      "afternoon": "Good afternoon",
+      "evening": "Good evening"
+    },
+    "welcomeMessage": "Your GeoAfric dashboard is ready. Add family members to start sharing locations and monitoring health.",
+    "platformLive": "Platform Live — MVP",
+    "stats": {
+      "familyMembers": "Family Members",
+      "addMembersToStart": "Add members to get started",
+      "activeLocations": "Active Locations",
+      "noLiveTracking": "No live tracking yet",
+      "healthScore": "Health Score",
+      "startMonitoring": "Start monitoring to see data",
+      "placesSaved": "Places Saved",
+      "discoverNearby": "Discover nearby places"
+    },
+    "quickActions": {
+      "title": "Quick Actions",
+      "viewFamilyMap": "View Family Map",
+      "healthMonitor": "Health Monitor",
+      "discoverPlaces": "Discover Places",
+      "inviteFamily": "Invite Family"
+    },
+    "checklist": {
+      "title": "Setup Checklist",
+      "complete": "{done} / {total} complete",
+      "completeProfile": "Complete your profile",
+      "inviteFirstMember": "Invite your first family member",
+      "enableLocation": "Enable location sharing",
+      "setupGeofence": "Set up a geofence zone"
+    },
+    "phase1Notice": {
+      "title": "Phase 1 — Foundation",
+      "message": "You're viewing the dashboard shell. Real-time location, health monitoring, and place discovery are being built in the next phases."
+    }
+  },
+  "health": {
+    "title": "Health & Wellness",
+    "subtitle": "Monitor your vitals, activity and AI-powered insights",
+    "tabs": {
+      "overview": "Overview",
+      "heartRate": "Heart Rate",
+      "activity": "Activity",
+      "goals": "Goals",
+      "insights": "AI Insights"
+    },
+    "heartRate": {
+      "title": "Heart Rate",
+      "logReading": "Log Heart Rate",
+      "cameraScan": "Camera-based detection",
+      "startScan": "Start Camera Scan",
+      "scanning": "Scanning…",
+      "detected": "{bpm} BPM detected",
+      "enterManually": "Enter BPM manually",
+      "log": "Log",
+      "recentReadings": "Recent Readings",
+      "zones": {
+        "low": "Low",
+        "normal": "Normal",
+        "elevated": "Elevated",
+        "high": "High"
+      },
+      "stats": {
+        "average": "Average",
+        "minimum": "Minimum",
+        "maximum": "Maximum",
+        "last7days": "(7d)"
+      }
+    },
+    "activity": {
+      "title": "Activity",
+      "todayActivity": "Today's Activity",
+      "steps": "Steps",
+      "calories": "Cal",
+      "active": "Active",
+      "updateToday": "Update Today's Activity",
+      "logActivity": "Log Activity",
+      "sevenDayHistory": "7-Day History",
+      "stepsGoalProgress": "{pct}% of {goal} step goal"
+    },
+    "goals": {
+      "title": "Health Goals",
+      "dailySteps": "Daily Steps Goal",
+      "minHeartRate": "Min Heart Rate (BPM)",
+      "maxHeartRate": "Max Heart Rate (BPM)",
+      "dailyWater": "Daily Water Goal (ml)",
+      "saveGoals": "Save Goals"
+    },
+    "insights": {
+      "title": "AI Health Assistant",
+      "subtitle": "Get personalised health tips based on your data",
+      "generateInsight": "Generate Insight",
+      "generating": "Generating…",
+      "noInsights": "No insights yet",
+      "noInsightsNote": "Log some heart rate and activity data, then generate your first insight."
+    }
+  },
+  "family": {
+    "title": "Family",
+    "subtitle": "Manage your family group, members and zones",
+    "createFamily": "Create family",
+    "joinFamily": "Join family",
+    "noFamily": "No family yet",
+    "noFamilyNote": "Create a family group to share locations, monitor health, and set safety zones together.",
+    "joinWithCode": "Join with code",
+    "members": "Members",
+    "invites": "Invites",
+    "zones": "Zones",
+    "owner": "Owner",
+    "admin": "Admin",
+    "member": "Member",
+    "leaveFamily": "Leave family",
+    "inviteCode": "Family code",
+    "newInvite": "New invite",
+    "inviteCreated": "New invite created — share this link:",
+    "expires": "Expires",
+    "safetyZones": "Safety Zones",
+    "addZone": "Add zone",
+    "noZones": "No zones yet.",
+    "addZoneNote": "Add zones like Home, School or Work to get enter/exit alerts.",
+    "zonePresets": {
+      "home": "🏠 Home",
+      "school": "🏫 School",
+      "work": "💼 Work",
+      "hospital": "🏥 Hospital"
+    }
+  },
+  "settings": {
+    "title": "Settings",
+    "subtitle": "Manage your profile, notifications and security",
+    "tabs": {
+      "profile": "Profile",
+      "notifications": "Notifications",
+      "security": "Security",
+      "devices": "Devices"
+    },
+    "profile": {
+      "fullName": "Full name",
+      "phone": "Phone",
+      "city": "City",
+      "language": "Language",
+      "saveChanges": "Save changes"
+    },
+    "notifications": {
+      "push": "Push notifications",
+      "pushSub": "Alerts sent to your device",
+      "location": "Location alerts",
+      "locationSub": "When family members move",
+      "health": "Health alerts",
+      "healthSub": "AI-detected anomalies",
+      "geofence": "Geofence alerts",
+      "geofenceSub": "Enter/exit zone notifications",
+      "email": "Email notifications",
+      "emailSub": "Summary emails",
+      "sms": "SMS notifications",
+      "smsSub": "Text message alerts (may incur charges)",
+      "quietHours": "Quiet hours (10pm–7am)",
+      "quietHoursSub": "Mute non-urgent alerts overnight",
+      "savePreferences": "Save preferences"
+    },
+    "security": {
+      "changePassword": "Change password",
+      "newPassword": "New password",
+      "updatePassword": "Update password",
+      "deleteAccount": "Delete account",
+      "deleteWarning": "This will permanently delete all your data and cannot be undone.",
+      "requestDeletion": "Request account deletion"
+    },
+    "devices": {
+      "title": "Registered devices",
+      "subtitle": "Devices receiving push notifications",
+      "noDevices": "No devices registered yet.",
+      "enablePush": "Enable push notifications to register this device.",
+      "lastSeen": "Last seen",
+      "remove": "Remove"
+    }
+  }
+}

@@ -1,0 +1,71 @@
+{
+  "expo": {
+    "name": "GeoAfric",
+    "slug": "geoafric",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "scheme": "geoafric",
+    "userInterfaceStyle": "light",
+    "backgroundColor": "#080F20",
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "africa.alphaz.geoafric",
+      "config": {
+        "googleMapsApiKey": "YOUR_IOS_GOOGLE_MAPS_KEY"
+      },
+      "infoPlist": {
+        "NSLocationWhenInUseUsageDescription": "GeoAfric uses your location to keep your family safe and show nearby places.",
+        "NSLocationAlwaysAndWhenInUseUsageDescription": "GeoAfric needs background location access to alert your family when you enter or leave a safety zone."
+      }
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "backgroundColor": "#080F20"
+      },
+      "package": "africa.alphaz.geoafric",
+      "permissions": [
+        "ACCESS_COARSE_LOCATION",
+        "ACCESS_FINE_LOCATION",
+        "ACCESS_BACKGROUND_LOCATION"
+      ],
+      "config": {
+        "googleMaps": {
+          "apiKey": "YOUR_ANDROID_GOOGLE_MAPS_KEY"
+        }
+      }
+    },
+    "web": {
+      "bundler": "metro",
+      "favicon": "./assets/favicon.png"
+    },
+    "plugins": [
+      "expo-router",
+      "expo-font",
+      "expo-secure-store",
+      [
+        "expo-location",
+        {
+          "locationAlwaysAndWhenInUsePermission": "Allow GeoAfric to use your location for family safety features."
+        }
+      ],
+      "expo-localization",
+      [
+        "expo-splash-screen",
+        {
+          "image": "./assets/icon.png",
+          "imageWidth": 160,
+          "resizeMode": "contain",
+          "backgroundColor": "#080F20"
+        }
+      ]
+    ],
+    "experiments": {
+      "typedRoutes": true
+    }
+  }
+}

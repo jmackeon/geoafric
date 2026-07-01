@@ -1,0 +1,41 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(node -e \"console.log\\(require\\('@supabase/supabase-js/package.json'\\).version\\)\")",
+      "Bash(node -e ' *)",
+      "Bash(rm \"/c/Users/Keon Anime/Desktop/Apps/GeoAfric/geoafric/_diagnose-signup.tmp.js\")",
+      "Bash(npm install *)",
+      "Bash(node -e \"console.log\\(require\\('./apps/mobile/node_modules/babel-preset-expo/package.json'\\).version\\)\")",
+      "Bash(node -e \"console.log\\(require\\('./node_modules/babel-preset-expo/package.json'\\).version\\)\")",
+      "Bash(curl -s -o /tmp/bundle3.js -w \"HTTP_STATUS:%{http_code}\\\\n\" \"http://localhost:8081/node_modules/expo-router/entry.bundle?platform=web&dev=true&hot=false&lazy=true&transform.engine=hermes&transform.routerRoot=app&unstable_transformProfile=hermes-stable\")",
+      "Bash(rm -f package-lock.json)",
+      "Bash(rm -rf node_modules apps/mobile/node_modules apps/web/node_modules apps/api/node_modules packages/shared/node_modules)",
+      "PowerShell(Stop-Process -Id 5252 -Force -Confirm:$false -ErrorAction SilentlyContinue)",
+      "Bash(curl -s -o /tmp/bundle4.js -w \"HTTP_STATUS:%{http_code}\\\\n\" \"http://localhost:8081/node_modules/expo-router/entry.bundle?platform=web&dev=true&hot=false&lazy=true&transform.engine=hermes&transform.routerRoot=app&unstable_transformProfile=hermes-stable\")",
+      "PowerShell(Stop-Process -Id 12040 -Force -Confirm:$false -ErrorAction SilentlyContinue)",
+      "Bash(curl -s -i -X POST http://localhost:3001/auth/login -H \"Content-Type: application/json\" -d '{\"email\":\"test@nonexistent.example\",\"password\":\"wrongpass123\"}' -w \"\\\\nHTTP_CODE:%{http_code}\\\\n\" --max-time 5)",
+      "Bash(curl -s -i -X POST http://192.168.40.150:3001/auth/login -H \"Content-Type: application/json\" -d '{\"email\":\"test@nonexistent.example\",\"password\":\"wrongpass123\"}' -w \"\\\\nHTTP_CODE:%{http_code}\\\\n\" --max-time 5)",
+      "Bash(curl -s -i -X POST http://localhost:3001/auth/login -H \"Content-Type: application/json\" -d '{\"email\":\"keonanimations.metropolis@gmail.com\",\"password\":\"Mackeown21*\"}' -w \"\\\\nHTTP_CODE:%{http_code}\\\\n\" --max-time 8)",
+      "Bash(curl -s -o /tmp/bundle5.js -w \"HTTP_STATUS:%{http_code}\\\\n\" \"http://localhost:8081/node_modules/expo-router/entry.bundle?platform=web&dev=true&hot=false&lazy=true&transform.engine=hermes&transform.routerRoot=app&unstable_transformProfile=hermes-stable\")",
+      "Bash(curl -s -i -X OPTIONS http://localhost:3001/auth/login -H 'Origin: http://localhost:8081' -H 'Access-Control-Request-Method: POST' -H 'Access-Control-Request-Headers: content-type' -w '\\\\nHTTP_CODE:%{http_code}\\\\n' --max-time 8)",
+      "Bash(curl -s -i -X POST http://localhost:3001/auth/login -H 'Origin: http://localhost:8081' -H 'Content-Type: application/json' -d '{\"email\":\"keonanimations.metropolis@gmail.com\",\"password\":\"Mackeown21*\"}' -w '\\\\nHTTP_CODE:%{http_code}\\\\n' --max-time 8)",
+      "Bash(node -e *)",
+      "Bash(find apps/api/src -iname \"*notif*\")",
+      "Bash(grep -rn \"notification\" apps/api/src --include=\"*.ts\" -l)",
+      "PowerShell(Stop-Process -Id 22140,21860 -Force -Confirm:$false -ErrorAction SilentlyContinue)",
+      "Bash(curl -s -i -X POST http://localhost:3001/auth/register -H 'Content-Type: application/json' -d '{\"email\":\"geoafric.regtest.__CMDSUB_OUTPUT__@mailinator.com\",\"password\":\"TestPass123!\",\"full_name\":\"Reg Test\"}' -w '\\\\nHTTP_CODE:%{http_code}\\\\n' --max-time 10)",
+      "Bash(curl -s -o /tmp/bundle_final.js -w \"HTTP_STATUS:%{http_code}\\\\n\" \"http://localhost:8081/node_modules/expo-router/entry.bundle?platform=web&dev=true&hot=false&lazy=true&transform.engine=hermes&transform.routerRoot=app&unstable_transformProfile=hermes-stable\")",
+      "PowerShell(Stop-Process -Id 17168 -Force -Confirm:$false -ErrorAction SilentlyContinue)",
+      "Bash(curl -s -o /tmp/bundle_v2.js -w \"HTTP_STATUS:%{http_code}\\\\n\" \"http://localhost:8081/node_modules/expo-router/entry.bundle?platform=web&dev=true&hot=false&lazy=true&transform.engine=hermes&transform.routerRoot=app&unstable_transformProfile=hermes-stable\")",
+      "PowerShell(Stop-Process -Id 19540,26056 -Force -Confirm:$false -ErrorAction SilentlyContinue)",
+      "Bash(find . -maxdepth 4 -path \"*/node_modules/@expo/vector-icons\" -type d)",
+      "Bash(node -e \"console.log\\(require.resolve\\('@expo/vector-icons/package.json', {paths:['apps/mobile']}\\)\\)\")",
+      "Bash(find . -path \"*/node_modules/@expo/vector-icons\" -maxdepth 6 -type d)",
+      "Bash(grep -n \"vector-icons\" apps/mobile/node_modules/expo/package.json)",
+      "Bash(curl -s -o /tmp/bundle_tabsfix.js -w \"HTTP_STATUS:%{http_code}\\\\n\" \"http://localhost:8081/node_modules/expo-router/entry.bundle?platform=web&dev=true&hot=false&lazy=true&transform.engine=hermes&transform.routerRoot=app&unstable_transformProfile=hermes-stable\")",
+      "Bash(curl -s \"http://localhost:8081/node_modules/expo-router/entry.bundle?platform=web&dev=true&hot=false&lazy=true&transform.engine=hermes&transform.routerRoot=app&unstable_transformProfile=hermes-stable\")",
+      "Bash(node -e \"console.log\\(require.resolve\\('@supabase/supabase-js/package.json'\\)\\)\")",
+      "Bash(node -e \"const l = require\\('./node_modules/lucide-react-native'\\); console.log\\('Mail' in l, 'MailIcon' in l\\)\")"
+    ]
+  }
+}
