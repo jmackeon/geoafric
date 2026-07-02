@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
 import {
   CreditCard, CheckCircle2, XCircle, Loader2,
@@ -40,7 +40,7 @@ const PROVIDERS = [
   { id: 'payaza',      label: 'Payaza',      sub: 'Ghana MoMo + Cross-border', flag: '🇬🇭'    },
 ];
 
-export default function BillingPage() {
+function BillingContent() {
   const { user } = useAuthStore();
   const searchParams = useSearchParams();
 
@@ -435,5 +435,20 @@ export default function BillingPage() {
         @keyframes spin { from{transform:rotate(0deg)} to{transform:rotate(360deg)} }
       `}</style>
     </div>
+  );
+}
+
+export default function BillingPage() {
+  return (
+    <Suspense fallback={
+      <div style={{ display: 'flex', justifyContent: 'center', padding: '80px' }}>
+        <div style={{ width: '32px', height: '32px', borderRadius: '50%',
+          border: '3px solid #E5E7EB', borderTopColor: '#00B67A',
+          animation: 'spin 0.8s linear infinite' }} />
+        <style>{`@keyframes spin{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}`}</style>
+      </div>
+    }>
+      <BillingContent />
+    </Suspense>
   );
 }
