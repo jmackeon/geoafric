@@ -125,7 +125,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
         {/* Nav items */}
         <nav style={{ flex: 1, padding: '0 12px 12px', display: 'flex', flexDirection: 'column',
           gap: '2px', position: 'relative', zIndex: 1 }}>
-          {NAV.map(({ href, icon: Icon, label, badge }) => {
+          {NAV.map(({ href, icon: Icon, label }) => {
             const active = pathname === href || (href !== '/dashboard' && pathname.startsWith(href));
             return (
               <Link key={href} href={href} onClick={() => setSidebarOpen(false)}
@@ -147,12 +147,6 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
                 <span style={{ flex: 1, fontSize: '14px', fontWeight: active ? 700 : 400,
                   color: active ? '#ffffff' : 'rgba(255,255,255,0.45)',
                   letterSpacing: '-0.01em' }}>{label}</span>
-                {badge && (
-                  <span style={{ fontSize: '9px', fontWeight: 800, padding: '2px 6px',
-                    borderRadius: '999px', background: 'rgba(0,230,210,0.15)',
-                    color: '#00E6D2', border: '1px solid rgba(0,230,210,0.3)',
-                    letterSpacing: '0.05em', textTransform: 'uppercase' }}>{badge}</span>
-                )}
                 {active && <ChevronRight style={{ width: '13px', height: '13px', color: '#F5A623', opacity: 0.7 }} />}
               </Link>
             );

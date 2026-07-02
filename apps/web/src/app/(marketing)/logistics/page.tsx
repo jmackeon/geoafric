@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import type { ElementType } from 'react';
 import { Truck, MapPin, Bell, BarChart2, Clock, Fuel } from 'lucide-react';
 import { ModulePageHero } from '@/components/marketing/ModulePageHero';
 import { ModulePilotCTA } from '@/components/marketing/ModulePilotCTA';
@@ -105,18 +106,21 @@ export default function LogisticsPage() {
             Everything a fleet manager needs. Nothing they don't.
           </h2>
           <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3">
-            {FEATURES.map(({ icon: Icon, title, body }) => (
-              <div key={title} className="rounded-2xl border border-gray-100 bg-[#F8F9FB] p-6">
-                <div
-                  className="mb-4 flex h-10 w-10 items-center justify-center rounded-xl"
-                  style={{ background: 'rgba(0,182,122,0.10)' }}
-                >
-                  <Icon className="h-5 w-5 text-green" strokeWidth={1.8} />
+            {FEATURES.map(({ icon, title, body }) => {
+              const Icon = icon as unknown as ElementType;
+              return (
+                <div key={title} className="rounded-2xl border border-gray-100 bg-[#F8F9FB] p-6">
+                  <div
+                    className="mb-4 flex h-10 w-10 items-center justify-center rounded-xl"
+                    style={{ background: 'rgba(0,182,122,0.10)' }}
+                  >
+                    <Icon className="h-5 w-5 text-green" strokeWidth={1.8} />
+                  </div>
+                  <h3 className="mb-2 text-sm font-bold text-navy">{title}</h3>
+                  <p className="text-xs leading-relaxed text-gray-500">{body}</p>
                 </div>
-                <h3 className="mb-2 text-sm font-bold text-navy">{title}</h3>
-                <p className="text-xs leading-relaxed text-gray-500">{body}</p>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </div>
       </section>
