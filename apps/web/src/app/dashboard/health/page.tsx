@@ -245,24 +245,26 @@ function HeartRateTab({ hrHistory, setHrHistory, hrStats, setHrStats, goals }: a
   const [scanning, setScanning] = useState(false);
   const [scanBpm, setScanBpm] = useState<number | null>(null);
   const [scanProgress, setScanProgress] = useState(0);
-  const timerRef = useRef<any>(null);
+  const timerRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
   useEffect(() => {
     healthApi.getHeartRate(20).then(r => setHrHistory(r.data ?? []));
-    return () => clearTimeout(timerRef.current);
+    return () => { if (timerRef.current) clearInterval(timerRef.current); };
   }, []);
 
   // Camera-based HR simulation (real implementation uses device camera + rPPG)
   const startCameraScan = () => {
+    if (timerRef.current) clearInterval(timerRef.current);
     setScanning(true);
     setScanBpm(null);
     setScanProgress(0);
     let progress = 0;
-    const interval = setInterval(() => {
+    timerRef.current = setInterval(() => {
       progress += 2;
       setScanProgress(progress);
       if (progress >= 100) {
-        clearInterval(interval);
+        if (timerRef.current) clearInterval(timerRef.current);
+        timerRef.current = null;
         // Simulated BPM — in production: real rPPG from camera frames
         const simBpm = Math.floor(65 + Math.random() * 30);
         setScanBpm(simBpm);

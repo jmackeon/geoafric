@@ -1,16 +1,25 @@
 'use client';
 
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
+import Link from 'next/link';
 import { getSupabaseClient } from '@/lib/supabase';
 import { useAuthStore } from '@/lib/store/auth.store';
+
+const CALLBACK_TIMEOUT_MS = 12000;
 
 export default function AuthCallbackPage() {
   const router = useRouter();
   const { setUser, setToken } = useAuthStore();
+  const [timedOut, setTimedOut] = useState(false);
 
   useEffect(() => {
     const supabase = getSupabaseClient();
+    let settled = false;
+
+    const timeoutId = setTimeout(() => {
+      if (!settled) setTimedOut(true);
+    }, CALLBACK_TIMEOUT_MS);
 
     const handleCallback = async () => {
       try {
@@ -52,11 +61,53 @@ export default function AuthCallbackPage() {
       } catch (err) {
         console.error('Callback exception:', err);
         router.replace('/auth/login');
+      } finally {
+        settled = true;
+        clearTimeout(timeoutId);
       }
     };
 
     handleCallback();
+
+    return () => clearTimeout(timeoutId);
   }, []);
+
+  if (timedOut) {
+    return (
+      <div style={{
+        minHeight: '100vh', width: '100vw',
+        background: 'linear-gradient(135deg, #0D1B3D 0%, #0D2B5E 55%, #0D1B3D 100%)',
+        display: 'flex', flexDirection: 'column', alignItems: 'center',
+        justifyContent: 'center', gap: '16px', padding: '24px', textAlign: 'center',
+      }}>
+        <img
+          src="/brand/logo-icon.png"
+          alt="GeoAfric"
+          style={{ width: '56px', height: '56px', objectFit: 'contain', opacity: 0.6 }}
+          onError={(e) => { (e.target as HTMLImageElement).style.display = 'none'; }}
+        />
+        <p style={{ color: 'white', fontSize: '16px', fontWeight: '700', margin: 0 }}>
+          Sign-in is taking longer than expected
+        </p>
+        <p style={{ color: '#93C5FD', fontSize: '14px', margin: 0, maxWidth: '360px' }}>
+          We couldn't complete sign-in. This link may have expired or already been used.
+        </p>
+        <div style={{ display: 'flex', gap: '12px', marginTop: '8px' }}>
+          <button onClick={() => window.location.reload()}
+            style={{ padding: '12px 24px', borderRadius: '12px', border: 'none',
+              background: '#F5A623', color: '#0D1B3D', fontWeight: '700', fontSize: '14px',
+              cursor: 'pointer', fontFamily: 'inherit' }}>
+            Retry
+          </button>
+          <Link href="/auth/login"
+            style={{ padding: '12px 24px', borderRadius: '12px', border: '1.5px solid rgba(255,255,255,0.3)',
+              color: 'white', fontWeight: '700', fontSize: '14px', textDecoration: 'none' }}>
+            Back to login
+          </Link>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div style={{

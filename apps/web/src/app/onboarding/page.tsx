@@ -114,7 +114,6 @@ export default function OnboardingPage() {
   return (
     <>
       <style>{`
-        html, body { background: #0D1B3D !important; margin: 0; padding: 0; }
         @keyframes float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-6px)} }
         * { box-sizing: border-box; }
       `}</style>
@@ -249,7 +248,7 @@ export default function OnboardingPage() {
 
           {/* Footer */}
           <p style={{ textAlign: 'center', color: '#60A5FA', fontSize: '11px', marginTop: '16px' }}>
-            Alpha Z Technologies © {new Date().getFullYear()} · GeoAfric Platform
+            Alpha-Z Technologies © {new Date().getFullYear()} · GeoAfric Platform
           </p>
         </div>
 

@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import {
   User,
   Bell,
@@ -420,7 +420,7 @@ function ToggleSwitch({ enabled, onClick }: { enabled: boolean; onClick: () => v
 
 function NotifsTab() {
   const { user } = useAuthStore();
-  const supabase = getSupabaseClient();
+  const supabase = useMemo(() => getSupabaseClient(), []);
   const [prefs, setPrefs] = useState({
     location_alerts: true,
     health_alerts: true,
@@ -546,7 +546,7 @@ function SecurityTab() {
 function DevicesTab() {
   const { user } = useAuthStore();
   const [tokens, setTokens] = useState<any[]>([]);
-  const supabase = getSupabaseClient();
+  const supabase = useMemo(() => getSupabaseClient(), []);
 
   useEffect(() => {
     if (!user?.id) return;

@@ -82,7 +82,6 @@ export default function RegisterPage() {
   return (
     <>
       <style>{`
-        html, body { background: #0D1B3D !important; margin: 0; padding: 0; }
         @keyframes float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-8px)} }
         @keyframes spin  { from{transform:rotate(0deg)} to{transform:rotate(360deg)} }
       `}</style>

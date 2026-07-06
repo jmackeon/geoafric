@@ -66,9 +66,7 @@ export default function LoginPage() {
 
   return (
     <>
-      {/* Force navy background on html/body for auth pages */}
       <style>{`
-        html, body { background: #0D1B3D !important; margin: 0; padding: 0; }
         @keyframes float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-8px)} }
         @keyframes spin  { from{transform:rotate(0deg)} to{transform:rotate(360deg)} }
       `}</style>
@@ -250,7 +248,7 @@ export default function LoginPage() {
               <span style={{ color: '#00E6D2' }}>AFRICA</span>
             </div>
             <p style={{ color: '#60A5FA', fontSize: '11px', margin: '8px 0 0' }}>
-              Alpha Zion Technologies © {new Date().getFullYear()}
+              Alpha-Z Technologies © {new Date().getFullYear()}
             </p>
           </div>
         </div>

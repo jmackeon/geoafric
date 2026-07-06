@@ -171,12 +171,12 @@ export default function HomePage() {
 
           {/* CTAs */}
           <div className="mb-14 flex flex-wrap gap-4">
-            <Link
-              href="/auth/register"
+            <a
+              href="https://app.geoafric.com/auth/register"
               className="rounded-xl bg-gold px-8 py-4 text-sm font-bold text-[#080F20] transition-opacity hover:opacity-90"
             >
               Start for free
-            </Link>
+            </a>
             <Link
               href="/business"
               className="rounded-xl border border-white/20 px-8 py-4 text-sm font-bold text-white transition-colors hover:border-white/40 hover:bg-white/5"

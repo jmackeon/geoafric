@@ -60,18 +60,18 @@ export function MarketingNav() {
 
         {/* Right CTAs — desktop */}
         <div className="hidden items-center gap-4 md:flex">
-          <Link
-            href="/auth/login"
+          <a
+            href="https://app.geoafric.com/auth/login"
             className="text-sm font-semibold text-white/80 transition-colors hover:text-white"
           >
             Sign in
-          </Link>
-          <Link
-            href="/auth/register"
+          </a>
+          <a
+            href="https://app.geoafric.com/auth/register"
             className="rounded-xl bg-green px-5 py-2 text-sm font-bold text-white transition-opacity hover:opacity-90"
           >
             Get started
-          </Link>
+          </a>
         </div>
 
         {/* Hamburger — mobile */}
@@ -99,18 +99,18 @@ export function MarketingNav() {
               </a>
             ))}
             <div className="flex flex-col gap-3 border-t border-white/10 pt-4">
-              <Link
-                href="/auth/login"
+              <a
+                href="https://app.geoafric.com/auth/login"
                 className="text-sm font-semibold text-white/80 hover:text-white"
               >
                 Sign in
-              </Link>
-              <Link
-                href="/auth/register"
+              </a>
+              <a
+                href="https://app.geoafric.com/auth/register"
                 className="rounded-xl bg-green px-4 py-3 text-center text-sm font-bold text-white"
               >
                 Get started
-              </Link>
+              </a>
             </div>
           </div>
         </div>
