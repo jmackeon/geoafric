@@ -8,7 +8,11 @@ export const metadata: Metadata = {
   title: 'GeoAfric — Tracking. Health. Discovery. Security.',
   description: 'Real-time family tracking, health monitoring, and place discovery built for Africa.',
   manifest: '/manifest.json',
-  icons: { icon: '/favicon.ico', apple: '/apple-touch-icon.png' },
+  icons: {
+    icon:     [{ url: '/brand/logo-icon.png', type: 'image/png' }],
+    apple:    [{ url: '/brand/logo-icon.png', type: 'image/png', sizes: '512x512' }],
+    shortcut:  '/brand/logo-icon.png',
+  },
   openGraph: {
     title: 'GeoAfric',
     description: 'Real-time family tracking, health monitoring, and place discovery built for Africa.',

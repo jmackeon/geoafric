@@ -4,7 +4,7 @@
     "slug": "geoafric",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./assets/logo-icon.png",
     "scheme": "geoafric",
     "userInterfaceStyle": "light",
     "backgroundColor": "#080F20",
@@ -24,7 +24,7 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
+        "foregroundImage": "./assets/logo-icon.png",
         "backgroundColor": "#080F20"
       },
       "package": "africa.alphaz.geoafric",
@@ -41,7 +41,7 @@
     },
     "web": {
       "bundler": "metro",
-      "favicon": "./assets/favicon.png"
+      "favicon": "./assets/logo-icon.png"
     },
     "plugins": [
       "expo-router",
@@ -57,7 +57,7 @@
       [
         "expo-splash-screen",
         {
-          "image": "./assets/icon.png",
+          "image": "./assets/logo-icon.png",
           "imageWidth": 160,
           "resizeMode": "contain",
           "backgroundColor": "#080F20"

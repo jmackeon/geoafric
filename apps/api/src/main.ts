@@ -21,6 +21,9 @@ async function bootstrap() {
       if (/^https?:\/\/(192\.168|10\.|172\.(1[6-9]|2[0-9]|3[01]))\.\d+\.\d+(:\d+)?$/.test(origin))
         return callback(null, true);
 
+      // Allow Render.com preview and production deployments
+      if (/^https:\/\/[^.]+\.onrender\.com$/.test(origin)) return callback(null, true);
+
       // Allow production domains
       const allowed = [
         'https://geoafric.app',
