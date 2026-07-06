@@ -3,6 +3,20 @@ import { createServerClient, type CookieOptions } from '@supabase/ssr';
 
 export async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
+  const hostname = request.headers.get('host') ?? '';
+  const isAppSubdomain = hostname === 'app.geoafric.com';
+
+  // ── app.geoafric.com subdomain routing ──────────────────────────────────
+  // Root path → send to login; auth/* and dashboard/* fall through below
+  if (isAppSubdomain && pathname === '/') {
+    return NextResponse.redirect(new URL('/auth/login', request.url));
+  }
+
+  // Skip Supabase auth overhead for non-protected routes (marketing pages, auth pages)
+  const isProtected = pathname.startsWith('/dashboard') || pathname.startsWith('/onboarding');
+  if (!isProtected) {
+    return NextResponse.next();
+  }
 
   let supabaseResponse = NextResponse.next({ request });
 
@@ -29,8 +43,6 @@ export async function middleware(request: NextRequest) {
 
   // IMPORTANT: Do not add any logic between createServerClient and getUser
   const { data: { user } } = await supabase.auth.getUser();
-
-  const isProtected = pathname.startsWith('/dashboard') || pathname.startsWith('/onboarding');
 
   if (isProtected && !user) {
     const loginUrl = request.nextUrl.clone();
@@ -62,5 +74,5 @@ export async function middleware(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ['/dashboard/:path*', '/onboarding/:path*'],
+  matcher: ['/', '/auth/:path*', '/dashboard/:path*', '/onboarding/:path*'],
 };

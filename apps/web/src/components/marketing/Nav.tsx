@@ -22,6 +22,15 @@ export function MarketingNav() {
   }, []);
 
   return (
+    <>
+    {/* Transparent backdrop — captures outside taps to close mobile menu */}
+    {mobileOpen && (
+      <div
+        className="fixed inset-0 z-40 md:hidden"
+        onClick={() => setMobileOpen(false)}
+        aria-hidden="true"
+      />
+    )}
     <header
       className={`fixed inset-x-0 top-0 z-50 bg-[#080F20] transition-shadow duration-200${
         scrolled ? ' shadow-[0_4px_32px_rgba(0,0,0,0.7)]' : ''
@@ -107,5 +116,6 @@ export function MarketingNav() {
         </div>
       )}
     </header>
+    </>
   );
 }
