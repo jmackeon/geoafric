@@ -194,7 +194,7 @@ export default function DashboardPage() {
             <p style={{ fontSize: '11px', fontWeight: 700, letterSpacing: '0.15em',
               textTransform: 'uppercase', color: 'rgba(0,230,210,0.7)',
               margin: '0 0 4px' }}>Family Presence</p>
-            <p style={{ fontSize: '15px', fontWeight: 700, color: 'white', margin: '0 0 16px' }}>Who's nearby</p>
+            <p style={{ fontSize: '15px', fontWeight: 700, color: 'white', margin: '0 0 16px' }}>Who&apos;s nearby</p>
             {[
               { name: 'Abena M.',    city: 'Kumasi',   mins: 1,  online: true  },
               { name: 'Kofi A.',     city: 'Accra',    mins: 12, online: true  },

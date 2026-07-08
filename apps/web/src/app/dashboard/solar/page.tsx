@@ -226,7 +226,7 @@ export default function SolarPage() {
             {/* Today's generation */}
             <div style={{ ...card, padding: '24px' }}>
               <p style={{ fontSize: '13px', fontWeight: 700, color: '#0D1B3D', fontFamily: 'Sora, sans-serif', margin: '0 0 16px' }}>
-                Today's Generation
+                Today&apos;s Generation
               </p>
               <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
                 {[{ label: 'Generated', value: '4.2 kWh', color: '#F5A623', pct: 70 },

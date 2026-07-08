@@ -13,6 +13,7 @@
     "dev:mobile":  "turbo run dev --filter=mobile",
     "build":       "turbo run build",
     "lint":        "turbo run lint",
+    "test":        "echo \"No root tests configured yet\" && exit 0",
     "clean":       "turbo run clean && rm -rf node_modules"
   },
   "devDependencies": {

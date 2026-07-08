@@ -40,7 +40,7 @@ export default function ForgotPasswordPage() {
             <span className="text-2xl font-display font-bold text-navy-800">G</span>
           </div>
           <h1 className="text-3xl font-display font-bold text-white mb-1">Reset Password</h1>
-          <p className="text-navy-200 text-sm">We'll send you a secure reset link</p>
+          <p className="text-navy-200 text-sm">We&apos;ll send you a secure reset link</p>
         </div>
 
         <div className="bg-white/95 backdrop-blur-sm rounded-3xl p-8 shadow-2xl">

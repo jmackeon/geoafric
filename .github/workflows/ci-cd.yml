@@ -28,11 +28,6 @@ jobs:
 
       - name: Run tests
         run: npm run test
-        env:
-          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
-          SUPABASE_ANON_KEY: ${{ secrets.SUPABASE_ANON_KEY }}
-          SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
-          JWT_SECRET: ${{ secrets.JWT_SECRET }}
 
   # ── Deploy API to Azure App Service (main branch only) ─────────────────────
   deploy-api:

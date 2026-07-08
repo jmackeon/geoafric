@@ -58,7 +58,7 @@ export function BusinessEnquiryForm({ defaultModule }: { defaultModule?: string 
             <span className="mb-4 block text-4xl">✅</span>
             <h3 className="mb-2 font-display text-2xl font-bold text-navy">Enquiry received</h3>
             <p className="text-gray-500">
-              Thanks — we'll be in touch within one business day.
+              Thanks — we&apos;ll be in touch within one business day.
             </p>
           </div>
         </div>
@@ -74,7 +74,7 @@ export function BusinessEnquiryForm({ defaultModule }: { defaultModule?: string 
           Tell us about your business.
         </h2>
         <p className="mb-12 text-gray-500">
-          We'll respond within one business day to schedule your free audit.
+          We&apos;ll respond within one business day to schedule your free audit.
         </p>
 
         {status === 'error' && (

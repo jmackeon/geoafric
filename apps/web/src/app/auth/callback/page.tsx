@@ -90,7 +90,7 @@ export default function AuthCallbackPage() {
           Sign-in is taking longer than expected
         </p>
         <p style={{ color: '#93C5FD', fontSize: '14px', margin: 0, maxWidth: '360px' }}>
-          We couldn't complete sign-in. This link may have expired or already been used.
+          We couldn&apos;t complete sign-in. This link may have expired or already been used.
         </p>
         <div style={{ display: 'flex', gap: '12px', marginTop: '8px' }}>
           <button onClick={() => window.location.reload()}

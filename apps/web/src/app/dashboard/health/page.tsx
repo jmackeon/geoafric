@@ -436,7 +436,7 @@ function ActivityTab({ today, setToday, goals }: any) {
         borderRadius: '20px', padding: '24px', position: 'relative', overflow: 'hidden' }}>
         <div style={{ position: 'absolute', top: '-20px', right: '-20px', width: '120px', height: '120px',
           borderRadius: '50%', background: 'rgba(255,255,255,0.15)', pointerEvents: 'none' }} />
-        <h3 style={{ fontSize: '14px', fontWeight: '700', color: '#7C2D12', margin: '0 0 16px' }}>Today's Activity</h3>
+        <h3 style={{ fontSize: '14px', fontWeight: '700', color: '#7C2D12', margin: '0 0 16px' }}>Today&apos;s Activity</h3>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: '12px' }}>
           {[
             { label: 'Steps',   value: today?.steps?.toLocaleString() ?? '0',     unit: '' },
@@ -467,7 +467,7 @@ function ActivityTab({ today, setToday, goals }: any) {
       <div style={{ background: 'white', borderRadius: '20px', padding: '24px',
         boxShadow: '0 2px 12px rgba(13,27,61,0.07)' }}>
         <h3 style={{ fontSize: '15px', fontWeight: '700', color: '#0D1B3D',
-          fontFamily: 'Sora, sans-serif', margin: '0 0 16px' }}>Update Today's Activity</h3>
+          fontFamily: 'Sora, sans-serif', margin: '0 0 16px' }}>Update Today&apos;s Activity</h3>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: '10px', marginBottom: '12px' }}>
           {[
             { field: 'steps',       label: 'Steps',          placeholder: 'e.g. 5000' },

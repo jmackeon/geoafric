@@ -93,7 +93,7 @@ function JoinPageContent() {
                 <div className="inline-flex items-center justify-center w-14 h-14 rounded-3xl bg-navy-800 mb-3">
                   <Users className="w-7 h-7 text-gold-400" />
                 </div>
-                <h2 className="text-lg font-display font-bold text-navy-800">You're invited!</h2>
+                <h2 className="text-lg font-display font-bold text-navy-800">You&apos;re invited!</h2>
                 <p className="text-sm text-gray-500 mt-1">Join this family on GeoAfric:</p>
               </div>
 
@@ -108,7 +108,7 @@ function JoinPageContent() {
 
               {!user && (
                 <div className="p-3 rounded-2xl bg-gold-50 border border-gold-200 text-xs text-gold-700 text-center">
-                  You'll need a GeoAfric account to join. We'll redirect you to sign up.
+                  You&apos;ll need a GeoAfric account to join. We&apos;ll redirect you to sign up.
                 </div>
               )}
 
@@ -131,7 +131,7 @@ function JoinPageContent() {
               <div className="w-14 h-14 rounded-full bg-teal-50 flex items-center justify-center">
                 <CheckCircle2 className="w-7 h-7 text-teal-500" />
               </div>
-              <h2 className="font-display font-bold text-navy-800">You're in!</h2>
+              <h2 className="font-display font-bold text-navy-800">You&apos;re in!</h2>
               <p className="text-sm text-gray-500">Redirecting to your family dashboard…</p>
             </motion.div>
           )}

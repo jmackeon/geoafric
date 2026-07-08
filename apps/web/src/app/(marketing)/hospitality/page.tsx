@@ -73,7 +73,7 @@ export default function HospitalityPage() {
           </h2>
           <p className="max-w-2xl text-base leading-relaxed text-gray-600">
             International guests at African properties expect the same safety standards as European resorts —
-            but the infrastructure isn't there. Walkie-talkies, WhatsApp groups, and front-desk calls don't
+            but the infrastructure isn&apos;t there. Walkie-talkies, WhatsApp groups, and front-desk calls don&apos;t
             scale during busy season and fail entirely during emergencies. GeoAfric Hospitality gives
             properties a guest safety layer that works on African connectivity, without requiring guests to
             install a custom-branded app.
@@ -84,7 +84,7 @@ export default function HospitalityPage() {
       {/* Who */}
       <section className="bg-[#F0F2F8] px-6 py-16">
         <div className="mx-auto max-w-4xl">
-          <p className="mb-4 text-xs font-bold uppercase tracking-widest text-gold">Who it's for</p>
+          <p className="mb-4 text-xs font-bold uppercase tracking-widest text-gold">Who it&apos;s for</p>
           <h2 className="mb-10 font-display text-2xl font-bold text-navy md:text-3xl">
             Any property where guests leave the building.
           </h2>
@@ -136,10 +136,10 @@ export default function HospitalityPage() {
             <p className="mb-2 text-xs font-bold uppercase tracking-widest text-gold">Honest note</p>
             <p className="max-w-2xl text-sm leading-relaxed text-gray-600">
               GeoAfric Hospitality is a module on a consumer safety platform — not a full-blown hotel PMS or
-              property management system. It won't replace your booking software, POS, or housekeeping rosters.
+              property management system. It won&apos;t replace your booking software, POS, or housekeeping rosters.
               What it does replace: the WhatsApp SOS group that falls apart during an actual emergency, and the
-              "I don't know where our guests are on the beach" problem that no current tool solves affordably.
-              If that's the specific problem you're solving, we're a great fit. If you need a full PMS, we'll
+              &quot;I don&apos;t know where our guests are on the beach&quot; problem that no current tool solves affordably.
+              If that&apos;s the specific problem you&apos;re solving, we&apos;re a great fit. If you need a full PMS, we&apos;ll
               tell you so on the call.
             </p>
           </div>

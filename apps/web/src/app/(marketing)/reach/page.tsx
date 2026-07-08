@@ -79,7 +79,7 @@ export default function ReachPage() {
           <div>
             <p className="mb-4 text-xs font-bold uppercase tracking-widest text-teal">The problem</p>
             <h2 className="font-display text-3xl font-bold text-navy md:text-4xl">
-              Digital ads don't work the same way in Africa.
+              Digital ads don&apos;t work the same way in Africa.
             </h2>
           </div>
           <div className="flex items-center">
@@ -181,8 +181,8 @@ export default function ReachPage() {
           <p className="mb-1 text-xs font-bold uppercase tracking-widest text-gold">Compliance note</p>
           <p className="text-sm leading-relaxed text-gray-700">
             GeoAfric Reach only delivers messages to users who have actively opted in to business
-            notifications within the GeoAfric app. We comply with Nigeria's NDPR, Ghana's Data Protection
-            Act, and the GDPR as applicable. All campaigns are subject to GeoAfric's content policy review
+            notifications within the GeoAfric app. We comply with Nigeria&apos;s NDPR, Ghana&apos;s Data Protection
+            Act, and the GDPR as applicable. All campaigns are subject to GeoAfric&apos;s content policy review
             before going live.
           </p>
         </div>

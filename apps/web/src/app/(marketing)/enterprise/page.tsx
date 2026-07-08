@@ -69,7 +69,7 @@ export default function EnterprisePage() {
         <div className="mx-auto max-w-4xl">
           <p className="mb-4 text-xs font-bold uppercase tracking-widest text-green">The problem</p>
           <h2 className="mb-6 font-display text-3xl font-bold text-navy md:text-4xl">
-            Enterprise HR tools weren't built for African conditions.
+            Enterprise HR tools weren&apos;t built for African conditions.
           </h2>
           <p className="max-w-2xl text-base leading-relaxed text-gray-600">
             Western workforce platforms assume stable connectivity, static office environments, and homogeneous
@@ -83,9 +83,9 @@ export default function EnterprisePage() {
       {/* Who */}
       <section className="bg-[#F0F2F8] px-6 py-16">
         <div className="mx-auto max-w-4xl">
-          <p className="mb-4 text-xs font-bold uppercase tracking-widest text-green">Who it's for</p>
+          <p className="mb-4 text-xs font-bold uppercase tracking-widest text-green">Who it&apos;s for</p>
           <h2 className="mb-10 font-display text-2xl font-bold text-navy md:text-3xl">
-            Built for Africa's largest employers.
+            Built for Africa&apos;s largest employers.
           </h2>
           <ul className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3">
             {WHO.map(item => (

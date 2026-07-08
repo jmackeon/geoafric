@@ -74,7 +74,7 @@ export default function LogisticsPage() {
           <p className="max-w-2xl text-base leading-relaxed text-gray-600">
             Fuel theft, unauthorised detours, unreliable drivers, and zero delivery confirmation — most fleet
             operators in Nigeria, Ghana, and Ivory Coast manage their vehicles by phone call. Expensive
-            European telematics platforms either don't work on local mobile networks or price small operators
+            European telematics platforms either don&apos;t work on local mobile networks or price small operators
             out entirely. GeoAfric Logistics is built for local conditions from day one.
           </p>
         </div>
@@ -103,7 +103,7 @@ export default function LogisticsPage() {
         <div className="mx-auto max-w-4xl">
           <p className="mb-4 text-xs font-bold uppercase tracking-widest text-green">What you get</p>
           <h2 className="mb-10 font-display text-2xl font-bold text-navy md:text-3xl">
-            Everything a fleet manager needs. Nothing they don't.
+            Everything a fleet manager needs. Nothing they don&apos;t.
           </h2>
           <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3">
             {FEATURES.map(({ icon, title, body }) => {
@@ -130,7 +130,7 @@ export default function LogisticsPage() {
         <div className="mx-auto max-w-4xl">
           <p className="mb-4 text-xs font-bold uppercase tracking-widest text-green">Coverage</p>
           <h2 className="mb-6 font-display text-2xl font-bold text-white md:text-3xl">
-            West Africa's major corridors — tracked natively.
+            West Africa&apos;s major corridors — tracked natively.
           </h2>
           <p className="mb-10 max-w-xl text-sm leading-relaxed text-white/50">
             Optimised for the Lagos–Abidjan corridor, Accra–Kumasi–Tamale route, and Abidjan–Ouagadougou

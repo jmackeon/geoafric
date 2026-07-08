@@ -224,7 +224,7 @@ export default function LoginPage() {
             </form>
 
             <p style={{ textAlign: 'center', fontSize: '14px', color: '#6B7280', marginTop: '20px', marginBottom: 0 }}>
-              Don't have an account?{' '}
+              Don&apos;t have an account?{' '}
               <Link href="/auth/register" style={{ fontWeight: '700', color: '#0D1B3D', textDecoration: 'none' }}>
                 Create one
               </Link>

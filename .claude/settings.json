@@ -35,7 +35,13 @@
       "Bash(curl -s -o /tmp/bundle_tabsfix.js -w \"HTTP_STATUS:%{http_code}\\\\n\" \"http://localhost:8081/node_modules/expo-router/entry.bundle?platform=web&dev=true&hot=false&lazy=true&transform.engine=hermes&transform.routerRoot=app&unstable_transformProfile=hermes-stable\")",
       "Bash(curl -s \"http://localhost:8081/node_modules/expo-router/entry.bundle?platform=web&dev=true&hot=false&lazy=true&transform.engine=hermes&transform.routerRoot=app&unstable_transformProfile=hermes-stable\")",
       "Bash(node -e \"console.log\\(require.resolve\\('@supabase/supabase-js/package.json'\\)\\)\")",
-      "Bash(node -e \"const l = require\\('./node_modules/lucide-react-native'\\); console.log\\('Mail' in l, 'MailIcon' in l\\)\")"
+      "Bash(node -e \"const l = require\\('./node_modules/lucide-react-native'\\); console.log\\('Mail' in l, 'MailIcon' in l\\)\")",
+      "Bash(grep -o '<title>[^<]*</title>' /tmp_body_check.html)",
+      "Bash(grep -c \"GeoAfric\" /tmp_body_check.html)",
+      "Bash(grep -io \"error\\\\|exception\\\\|stack trace\" /tmp_body_check.html)",
+      "PowerShell(Get-CimInstance Win32_Process -Filter \"Name='node.exe' or Name='chrome.exe'\")",
+      "PowerShell(Get-Process)",
+      "Bash(curl -s -o /dev/null -w \"status=%{http_code}\\\\n\" --max-time 3 http://localhost:3000/)"
     ]
   }
 }

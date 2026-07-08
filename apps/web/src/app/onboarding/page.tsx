@@ -404,7 +404,7 @@ function StepFamily({ form, update, setForm }: any) {
           onClick={() => setForm((f: any) => ({ ...f, skip_family: false }))}
           style={{ fontSize: '13px', color: '#0D1B3D', fontWeight: '600', background: 'none',
             border: 'none', cursor: 'pointer', textDecoration: 'underline', fontFamily: 'inherit' }}>
-          Actually, I'll set one up now
+          Actually, I&apos;ll set one up now
         </button>
       </div>
     );
@@ -425,7 +425,7 @@ function StepFamily({ form, update, setForm }: any) {
           <div>
             <p style={{ fontSize: '12px', fontWeight: '600', color: '#92400E', margin: '0 0 2px' }}>Invite members</p>
             <p style={{ fontSize: '11px', color: '#B45309', margin: 0 }}>
-              After setup, you'll get a unique invite code to share with family members.
+              After setup, you&apos;ll get a unique invite code to share with family members.
             </p>
           </div>
         </div>
@@ -434,7 +434,7 @@ function StepFamily({ form, update, setForm }: any) {
         onClick={() => setForm((f: any) => ({ ...f, skip_family: true }))}
         style={{ fontSize: '13px', color: '#9CA3AF', background: 'none', border: 'none',
           cursor: 'pointer', textDecoration: 'underline', fontFamily: 'inherit', textAlign: 'left' }}>
-        Skip for now — I'll set up family later
+        Skip for now — I&apos;ll set up family later
       </button>
     </div>
   );
