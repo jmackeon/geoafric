@@ -2,18 +2,20 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { Menu, X } from 'lucide-react';
 
 const NAV_LINKS = [
-  { label: 'Product',      href: '#features'    },
-  { label: 'For Business', href: '/business'      },
-  { label: 'Pricing',      href: '#pricing'      },
-  { label: 'About',        href: '/about'        },
+  { label: 'Product',      href: '/#features'   },
+  { label: 'For Business', href: '/business'    },
+  { label: 'Pricing',      href: '/#pricing'    },
+  { label: 'About',        href: '/about'       },
 ];
 
 export function MarketingNav() {
-  const [scrolled,    setScrolled]    = useState(false);
-  const [mobileOpen,  setMobileOpen]  = useState(false);
+  const [scrolled,   setScrolled]   = useState(false);
+  const [mobileOpen, setMobileOpen] = useState(false);
+  const pathname = usePathname();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 8);
@@ -47,15 +49,22 @@ export function MarketingNav() {
 
         {/* Centre links — desktop */}
         <nav className="hidden items-center gap-8 md:flex">
-          {NAV_LINKS.map(({ label, href }) => (
-            <a
-              key={label}
-              href={href}
-              className="text-sm font-medium text-white/60 transition-colors hover:text-white"
-            >
-              {label}
-            </a>
-          ))}
+          {NAV_LINKS.map(({ label, href }) => {
+            const isActive = pathname === href || (href !== '/' && pathname?.startsWith(href) && href !== '/#features' && href !== '/#pricing');
+            return (
+              <a
+                key={label}
+                href={href}
+                className={`text-sm font-medium transition-colors ${
+                  isActive
+                    ? 'font-bold text-green border-b-2 border-green pb-0.5'
+                    : 'text-white/60 hover:text-white'
+                }`}
+              >
+                {label}
+              </a>
+            );
+          })}
         </nav>
 
         {/* Right CTAs — desktop */}
