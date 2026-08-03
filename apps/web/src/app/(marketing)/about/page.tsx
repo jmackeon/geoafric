@@ -14,7 +14,7 @@ export default function AboutPage() {
       <section className="relative overflow-hidden bg-white px-6 py-16 md:py-24 border-b border-gray-100">
         <div className="mx-auto max-w-7xl">
           <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-12">
-            
+
             {/* Left Content */}
             <div className="lg:col-span-7">
               <p className="mb-3 text-xs font-bold uppercase tracking-widest text-green">
@@ -37,10 +37,10 @@ export default function AboutPage() {
             {/* Right Floating Dark Card */}
             <div className="lg:col-span-5">
               <div className="relative mx-auto max-w-md">
-                
+
                 {/* Decorative Dot Matrix Grid (Top Right) */}
-                <div 
-                  className="absolute -top-6 -right-6 z-0 grid grid-cols-8 gap-2.5 opacity-60" 
+                <div
+                  className="absolute -top-6 -right-6 z-0 grid grid-cols-8 gap-2.5 opacity-60"
                   aria-hidden="true"
                 >
                   {Array.from({ length: 32 }).map((_, i) => (
@@ -136,9 +136,9 @@ export default function AboutPage() {
       {/* ── 3. WHAT WE'RE BUILDING TOWARD SECTION ───────────────────────────── */}
       <section className="relative overflow-hidden bg-[#080F20] px-6 py-20 md:py-28 text-white">
         {/* Subtle circular background glow graphic */}
-        <div 
-          className="pointer-events-none absolute -right-24 top-1/2 -translate-y-1/2 h-96 w-96 rounded-full bg-teal/10 blur-3xl" 
-          aria-hidden="true" 
+        <div
+          className="pointer-events-none absolute -right-24 top-1/2 -translate-y-1/2 h-96 w-96 rounded-full bg-teal/10 blur-3xl"
+          aria-hidden="true"
         />
 
         <div className="relative mx-auto max-w-7xl">
@@ -148,11 +148,11 @@ export default function AboutPage() {
           <h2 className="mb-8 font-display text-3xl font-bold text-white md:text-4xl lg:text-5xl max-w-3xl">
             Africa&apos;s connected family safety platform.
           </h2>
-          
+
           <p className="mb-12 max-w-4xl text-base leading-relaxed text-slate-300 md:text-lg">
-            We are building a platform that gets smarter with every family it protects. GeoAfric starts in Nigeria. 
-            It grows through Ghana and Ivory Coast. It expands across the continent. Every data point stays in-country. 
-            Every insight compounds. Nothing is sold. In ten years, the infrastructure we are building today keeps 
+            We are building a platform that gets smarter with every family it protects. GeoAfric starts in Nigeria.
+            It grows through Ghana and Ivory Coast. It expands across the continent. Every data point stays in-country.
+            Every insight compounds. Nothing is sold. In ten years, the infrastructure we are building today keeps
             millions of African families safe, connected, and in control of their own data.
           </p>
 
@@ -162,7 +162,7 @@ export default function AboutPage() {
               More families
             </span>
             <span className="text-teal font-bold text-lg">→</span>
-            
+
             <span className="rounded-full bg-white/[0.08] border border-white/10 px-5 py-2.5 text-xs md:text-sm font-medium text-slate-300">
               generates signal
             </span>
@@ -199,7 +199,7 @@ export default function AboutPage() {
                   Your data never leaves.
                 </h3>
                 <p className="text-sm leading-relaxed text-slate-600">
-                  All personal, location, and health data is stored in-country and never sold. 
+                  All personal, location, and health data is stored in-country and never sold.
                   Our intelligence flywheel compounds internally — making GeoAfric smarter for your family, not for advertisers.
                 </p>
               </div>
@@ -213,7 +213,7 @@ export default function AboutPage() {
                   We build when families need it.
                 </h3>
                 <p className="text-sm leading-relaxed text-slate-600">
-                  GeoAfric does not build features on speculation. Every feature we deploy was asked for by real families 
+                  GeoAfric does not build features on speculation. Every feature we deploy was asked for by real families
                   or users before development began. This keeps the platform focused and directly useful.
                 </p>
               </div>
@@ -227,7 +227,7 @@ export default function AboutPage() {
                   One platform. Never rebuilt.
                 </h3>
                 <p className="text-sm leading-relaxed text-slate-600">
-                  Every GeoAfric feature — location, health, discovery, SOS — runs on the same backend. 
+                  Every GeoAfric feature — location, health, discovery, SOS — runs on the same backend.
                   Every improvement benefits every user, and every new capability ships faster than the last.
                 </p>
               </div>
@@ -241,8 +241,8 @@ export default function AboutPage() {
                   Responsible technology, not surveillance.
                 </h3>
                 <p className="text-sm leading-relaxed text-slate-600">
-                  GeoAfric is consent-based. Family members choose to share their location. No family member can 
-                  be tracked without explicit consent. Alpha-Z Secure — our government-facing security division — 
+                  GeoAfric is consent-based. Family members choose to share their location. No family member can
+                  be tracked without explicit consent. Alpha-Z Secure — our government-facing security division —
                   is kept as a legally separate entity to protect this boundary absolutely.
                 </p>
               </div>
@@ -266,7 +266,7 @@ export default function AboutPage() {
 
           {/* 3 Country Cards */}
           <div className="grid grid-cols-1 gap-6 md:grid-cols-3 mb-8">
-            
+
             {/* Country 1: Nigeria */}
             <div className="flex flex-col justify-between rounded-2xl bg-white border-t-4 border-green p-7 shadow-card transition-shadow hover:shadow-card-hover">
               <div>
@@ -332,9 +332,9 @@ export default function AboutPage() {
       {/* ── 6. CTA SECTION ──────────────────────────────────────────────────── */}
       <section className="relative overflow-hidden bg-[#080F20] px-6 py-24 text-center text-white">
         {/* Glowing background radial blur */}
-        <div 
-          className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(0,182,122,0.15)_0,transparent_70%)]" 
-          aria-hidden="true" 
+        <div
+          className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(0,182,122,0.15)_0,transparent_70%)]"
+          aria-hidden="true"
         />
 
         <div className="relative mx-auto max-w-4xl">
