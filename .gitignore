@@ -10,3 +10,6 @@ dist
 .DS_Store
 coverage
 render-env.txt
+
+.vercel
+.env*
