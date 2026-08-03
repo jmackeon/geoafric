@@ -80,7 +80,7 @@ export default function AboutPage() {
             OUR STORY
           </p>
           <h2 className="mb-12 font-display text-3xl font-bold text-navy md:text-4xl">
-            The problem we couldn't ignore.
+            The problem we couldn&apos;t ignore.
           </h2>
 
           <div className="grid grid-cols-1 gap-12 lg:grid-cols-12">
@@ -90,7 +90,7 @@ export default function AboutPage() {
                 In Nigeria, a parent sending their child to school by bus has no reliable way to know they arrived safely.
               </p>
               <p>
-                A mother in Accra cannot track whether her elderly parent has wandered from home. A father in Abidjan has no SOS button to press when his child doesn't come home from school.
+                A mother in Accra cannot track whether her elderly parent has wandered from home. A father in Abidjan has no SOS button to press when his child doesn&apos;t come home from school.
               </p>
               <p>
                 These are not edge cases. These are the everyday realities of raising a family in West Africa. Existing solutions were too expensive, not localised, or built to move African data outside Africa.
@@ -143,10 +143,10 @@ export default function AboutPage() {
 
         <div className="relative mx-auto max-w-7xl">
           <p className="mb-3 text-xs font-bold uppercase tracking-widest text-teal">
-            WHAT WE'RE BUILDING TOWARD
+            WHAT WE&apos;RE BUILDING TOWARD
           </p>
           <h2 className="mb-8 font-display text-3xl font-bold text-white md:text-4xl lg:text-5xl max-w-3xl">
-            Africa's connected family safety platform.
+            Africa&apos;s connected family safety platform.
           </h2>
           
           <p className="mb-12 max-w-4xl text-base leading-relaxed text-slate-300 md:text-lg">
