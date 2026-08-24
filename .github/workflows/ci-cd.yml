@@ -30,42 +30,9 @@ jobs:
       - name: Run tests
         run: npm run test
 
-  # ── Deploy API to Azure App Service (main branch only) ──────────────────
-  deploy-api:
-    name: Deploy API → Azure
-    needs: test
-    runs-on: ubuntu-latest
-    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
-
-    steps:
-      - uses: actions/checkout@v4
-
-      - name: Azure Login
-        uses: azure/login@v2
-        with:
-          creds: ${{ secrets.AZURE_CREDENTIALS }}
-
-      - name: Build and push Docker image
-        run: |
-          az acr login --name geoafricacr
-          docker build -f apps/api/Dockerfile \
-            -t geoafricacr.azurecr.io/geoafric-api:${{ github.sha }} \
-            -t geoafricacr.azurecr.io/geoafric-api:latest .
-          docker push geoafricacr.azurecr.io/geoafric-api:${{ github.sha }}
-          docker push geoafricacr.azurecr.io/geoafric-api:latest
-
-      - name: Update Web App to new image
-        run: |
-          az webapp config container set \
-            --name geoafric-api \
-            --resource-group geoafric-rg \
-            --docker-custom-image-name geoafricacr.azurecr.io/geoafric-api:${{ github.sha }}
-
-      - name: Restart Web App
-        run: |
-          az webapp restart \
-            --name geoafric-api \
-            --resource-group geoafric-rg
+  # ── API deploy is now handled automatically by Render on push to main ───
+  # Render watches this repo directly and builds apps/api/Dockerfile itself,
+  # so no deploy-api job is needed here anymore.
 
   # ── Deploy Web to Vercel (main branch only) ─────────────────────────────
   deploy-web:
