@@ -1,4 +1,4 @@
-FROM node:20-alpine AS builder
+FROM node:22-alpine AS builder
 WORKDIR /repo
 
 COPY package.json package-lock.json turbo.json ./
@@ -8,7 +8,7 @@ COPY packages ./packages
 RUN npm ci
 RUN npx turbo run build --filter=api
 
-FROM node:20-alpine AS runner
+FROM node:22-alpine AS runner
 WORKDIR /repo
 
 ENV NODE_ENV=production
