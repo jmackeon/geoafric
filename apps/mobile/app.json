@@ -12,10 +12,11 @@
       "**/*"
     ],
     "ios": {
+      "googleServicesFile": "./GoogleService-Info.plist",
       "supportsTablet": true,
       "bundleIdentifier": "africa.alphaz.geoafric",
       "config": {
-        "googleMapsApiKey": "YOUR_IOS_GOOGLE_MAPS_KEY"
+        "googleMapsApiKey": "AIzaSyBvk7aeTI4aqlD7oYm4EuQmRSeTDVg6d2w"
       },
       "infoPlist": {
         "NSLocationWhenInUseUsageDescription": "GeoAfric uses your location to keep your family safe and show nearby places.",
@@ -24,6 +25,7 @@
       }
     },
     "android": {
+      "googleServicesFile": "./google-services.json",
       "adaptiveIcon": {
         "foregroundImage": "./assets/logo-icon.png",
         "backgroundColor": "#080F20"
@@ -38,7 +40,7 @@
       ],
       "config": {
         "googleMaps": {
-          "apiKey": "YOUR_ANDROID_GOOGLE_MAPS_KEY"
+          "apiKey": "YAIzaSyBvk7aeTI4aqlD7oYm4EuQmRSeTDVg6d2w"
         }
       }
     },
