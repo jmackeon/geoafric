@@ -9,12 +9,12 @@ import { LocationModule } from './location/location.module';
 import { PlacesModule } from './places/places.module';
 import { PaymentsModule } from './payments/payments.module';
 import { SolarTrackModule } from './solartrack/solartrack.module';
-
+import { FirebaseModule } from './firebase/firebase.module';
 @Module({
   imports: [
     ConfigModule.forRoot({ isGlobal: true }),
     SupabaseModule, AuthModule, UsersModule, FamiliesModule,
-    HealthModule, LocationModule, PlacesModule, PaymentsModule, SolarTrackModule,
+    HealthModule, LocationModule, PlacesModule, PaymentsModule, SolarTrackModule, FirebaseModule,
   ],
 })
-export class AppModule {}
+export class AppModule { }

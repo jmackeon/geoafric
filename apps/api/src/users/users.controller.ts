@@ -27,4 +27,13 @@ export class UsersController {
   ) {
     return this.usersService.updateProfile(req.user.id, body);
   }
+
+  @Patch('push-token')
+  @ApiOperation({ summary: 'Update push notification token' })
+  updatePushToken(
+    @Request() req: AuthRequest,
+    @Body() body: { token: string },
+  ) {
+    return this.usersService.updatePushToken(req.user.id, body.token);
+  }
 }

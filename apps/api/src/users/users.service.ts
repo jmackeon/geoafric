@@ -33,4 +33,16 @@ export class UsersService {
     if (error) throw new Error(error.message);
     return data;
   }
+
+  async updatePushToken(userId: string, token: string) {
+    const { data, error } = await this.supabase.admin
+      .from('profiles')
+      .update({ push_token: token, updated_at: new Date().toISOString() })
+      .eq('id', userId)
+      .select()
+      .single();
+
+    if (error) throw new Error(error.message);
+    return data;
+  }
 }
