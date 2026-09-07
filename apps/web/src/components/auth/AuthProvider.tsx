@@ -5,7 +5,14 @@ import { getSupabaseClient } from '@/lib/supabase';
 import { useAuthStore } from '@/lib/store/auth.store';
 
 export function AuthProvider({ children }: { children: React.ReactNode }) {
-  const { setUser, setToken, setLoading, logout } = useAuthStore();
+  // Use individual selectors — subscribing to the whole store (`useAuthStore()`) causes
+  // AuthProvider (and its entire subtree) to re-render on every store mutation, including
+  // the loading=true → loading=false flip on every page load. Selectors scope each
+  // subscription to a single slice so the component only re-renders when that value changes.
+  const setUser    = useAuthStore(s => s.setUser);
+  const setToken   = useAuthStore(s => s.setToken);
+  const setLoading = useAuthStore(s => s.setLoading);
+  const logout     = useAuthStore(s => s.logout);
   const initialized = useRef(false);
 
   useEffect(() => {
