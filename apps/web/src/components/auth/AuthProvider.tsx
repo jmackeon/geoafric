@@ -12,7 +12,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   const setUser    = useAuthStore(s => s.setUser);
   const setToken   = useAuthStore(s => s.setToken);
   const setLoading = useAuthStore(s => s.setLoading);
-  const logout     = useAuthStore(s => s.logout);
+  // NOTE: logout() is intentionally NOT used here — see onAuthStateChange comment below.
   const initialized = useRef(false);
 
   useEffect(() => {
@@ -54,7 +54,14 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         });
         setToken(session.access_token);
       } else {
-        logout();
+        // IMPORTANT: Do NOT call logout() here.
+        // logout() calls supabase.auth.signOut(), which emits a SIGNED_OUT event,
+        // which fires this callback again with session=null, which calls logout() again…
+        // That's an infinite async loop that saturates the event queue and freezes the page.
+        // Simply clear local state — the signOut() call belongs only in the user-facing
+        // logout button (DashboardLayout), not in a reactive auth listener.
+        setUser(null);
+        setToken(null);
       }
     });
 
