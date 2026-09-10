@@ -49,11 +49,15 @@ export default function LoginPage() {
   const handleGoogleLogin = async () => {
     setGoogleLoading(true);
     try {
+      const origin = typeof window !== 'undefined' && window.location.origin
+        ? window.location.origin
+        : (process.env.NEXT_PUBLIC_APP_URL || 'https://geoafric.com');
+
       const supabase = getSupabaseClient();
       const { error } = await supabase.auth.signInWithOAuth({
         provider: 'google',
         options: {
-          redirectTo: `${window.location.origin}/auth/callback`,
+          redirectTo: `${origin}/auth/callback`,
           queryParams: { access_type: 'offline', prompt: 'consent' },
         },
       });

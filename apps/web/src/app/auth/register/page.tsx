@@ -22,13 +22,17 @@ export default function RegisterPage() {
     if (form.password.length < 8) { toast.error('Password must be at least 8 characters.'); return; }
     setLoading(true);
     try {
+      const origin = typeof window !== 'undefined' && window.location.origin
+        ? window.location.origin
+        : (process.env.NEXT_PUBLIC_APP_URL || 'https://geoafric.com');
+
       const supabase = getSupabaseClient();
       const { data, error } = await supabase.auth.signUp({
         email: form.email,
         password: form.password,
         options: {
           data: { full_name: form.full_name, phone: form.phone || null },
-          emailRedirectTo: `${window.location.origin}/auth/callback`,
+          emailRedirectTo: `${origin}/auth/callback`,
         },
       });
       if (error) throw error;
@@ -51,11 +55,15 @@ export default function RegisterPage() {
   const handleGoogle = async () => {
     setGoogleLoading(true);
     try {
+      const origin = typeof window !== 'undefined' && window.location.origin
+        ? window.location.origin
+        : (process.env.NEXT_PUBLIC_APP_URL || 'https://geoafric.com');
+
       const supabase = getSupabaseClient();
       const { error } = await supabase.auth.signInWithOAuth({
         provider: 'google',
         options: {
-          redirectTo: `${window.location.origin}/auth/callback`,
+          redirectTo: `${origin}/auth/callback`,
           queryParams: { access_type: 'offline', prompt: 'consent' },
         },
       });
