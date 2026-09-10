@@ -1,0 +1,12 @@
+{
+  "expo": {
+    "extra": {
+      "eas": {
+        "projectId": "e3ead2ee-7f06-432e-b1fd-e97c7c704397"
+      }
+    },
+    "android": {
+      "package": "com.alphaztech.geoafric"
+    }
+  }
+}
