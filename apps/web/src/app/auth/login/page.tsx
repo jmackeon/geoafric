@@ -1,15 +1,18 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, Suspense } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
+import { useSearchParams } from 'next/navigation';
 import { Mail, Lock, Eye, EyeOff, Loader2 } from 'lucide-react';
 import toast from 'react-hot-toast';
 import { getSupabaseClient } from '@/lib/supabase';
 import { useAuthStore } from '@/lib/store/auth.store';
 
-export default function LoginPage() {
+function LoginPageContent() {
   const router = useRouter();
+  const searchParams = useSearchParams();
+  const nextParam = searchParams.get('next') || '';
   const { setUser, setToken } = useAuthStore();
   const [email, setEmail]               = useState('');
   const [password, setPassword]         = useState('');
@@ -35,7 +38,8 @@ export default function LoginPage() {
       });
       setToken(data.session.access_token);
       toast.success('Welcome back!');
-      window.location.replace('/dashboard');
+      const destination = nextParam && nextParam.startsWith('/') ? nextParam : '/dashboard';
+      window.location.replace(destination);
     } catch (err: any) {
       const msg = err?.message ?? '';
       if (msg.includes('Invalid login')) toast.error('Incorrect email or password.');
@@ -53,11 +57,15 @@ export default function LoginPage() {
         ? window.location.origin
         : (process.env.NEXT_PUBLIC_APP_URL || 'https://geoafric.com');
 
+      const redirectPath = nextParam && nextParam.startsWith('/')
+        ? `/auth/callback?next=${encodeURIComponent(nextParam)}`
+        : '/auth/callback';
+
       const supabase = getSupabaseClient();
       const { error } = await supabase.auth.signInWithOAuth({
         provider: 'google',
         options: {
-          redirectTo: `${origin}/auth/callback`,
+          redirectTo: `${origin}${redirectPath}`,
           queryParams: { access_type: 'offline', prompt: 'consent' },
         },
       });
@@ -258,5 +266,26 @@ export default function LoginPage() {
         </div>
       </div>
     </>
+  );
+}
+
+export default function LoginPage() {
+  return (
+    <Suspense
+      fallback={
+        <div style={{
+          minHeight: '100vh',
+          width: '100vw',
+          background: 'linear-gradient(135deg, #0D1B3D 0%, #0D2B5E 55%, #0D1B3D 100%)',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+        }}>
+          <Loader2 className="w-8 h-8 animate-spin text-white" />
+        </div>
+      }
+    >
+      <LoginPageContent />
+    </Suspense>
   );
 }

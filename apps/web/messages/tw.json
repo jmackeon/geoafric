@@ -12,7 +12,13 @@
     "complete": "Wie Nhyehyɛe",
     "signOut": "Pu firii mu",
     "freePlan": "Afoforo Plan",
-    "comingSoon": "Reba Anɔpa"
+    "comingSoon": "Reba Anɔpa",
+    "downloadApp": "Twe App No",
+    "getApp": "Nya App No",
+    "androidApkNotice": "Android APK · iOS reba anɔpa",
+    "registrationSuccess": "Akaunti no ayɛ yie",
+    "registrationSuccessDesc": "Akwaaba baa GeoAfric! Wo akaunti no abue.",
+    "continueToDashboard": "Toa so kɔ Dashboard"
   },
   "auth": {
     "signIn": "Wo kɔ mu",

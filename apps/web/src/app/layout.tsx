@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from 'next';
 import { Toaster } from 'react-hot-toast';
 import { AuthProvider } from '@/components/auth/AuthProvider';
 import { TranslationProvider } from '@/i18n/TranslationProvider';
+import { RegistrationSuccessModal } from '@/components/ui/RegistrationSuccessModal';
 import './globals.css';
 
 export const metadata: Metadata = {
@@ -49,6 +50,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <TranslationProvider>
           <AuthProvider>
             {children}
+            <RegistrationSuccessModal />
             <Toaster
               position="top-center"
               toastOptions={{

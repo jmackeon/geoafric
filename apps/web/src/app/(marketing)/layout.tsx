@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import { MarketingNav } from '@/components/marketing/Nav';
+import { DownloadAppButton } from '@/components/ui/DownloadAppButton';
 
 export const metadata: Metadata = {
   title: 'GeoAfric — Family Safety, Health & Place Discovery',
@@ -64,6 +65,9 @@ function MarketingFooter() {
           <div>
             <p className="mb-4 text-xs font-bold uppercase tracking-widest text-white/30">Product</p>
             <ul className="space-y-3">
+              <li>
+                <DownloadAppButton variant="footer" label="Download App (APK)" showNotice={false} />
+              </li>
               {FOOTER.product.map(({ label, href }) => (
                 <li key={label}>
                   <a href={href} className="text-sm text-white/50 transition-colors hover:text-white">

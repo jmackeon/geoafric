@@ -15,9 +15,11 @@ interface AuthState {
   user: User | null;
   accessToken: string | null;
   loading: boolean;
+  registrationSuccessModal: boolean;
   setUser: (user: User | null) => void;
   setToken: (token: string | null) => void;
   setLoading: (loading: boolean) => void;
+  setRegistrationSuccessModal: (show: boolean) => void;
   logout: () => Promise<void>;
   refreshUser: () => Promise<void>;
 }
@@ -28,10 +30,12 @@ export const useAuthStore = create<AuthState>()(
       user: null,
       accessToken: null,
       loading: false, // false by default — AuthProvider sets true only while checking
+      registrationSuccessModal: false,
 
-      setUser:    (user)          => set({ user }),
-      setToken:   (accessToken)   => set({ accessToken }),
-      setLoading: (loading)       => set({ loading }),
+      setUser:                     (user)                     => set({ user }),
+      setToken:                    (accessToken)              => set({ accessToken }),
+      setLoading:                  (loading)                  => set({ loading }),
+      setRegistrationSuccessModal: (registrationSuccessModal) => set({ registrationSuccessModal }),
 
       logout: async () => {
         try {

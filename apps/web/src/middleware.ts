@@ -6,6 +6,11 @@ export async function middleware(request: NextRequest) {
   const hostname = request.headers.get('host') ?? '';
   const isAppSubdomain = hostname === 'app.geoafric.com';
 
+  // Exclude public downloads, static files, and marketing routes immediately
+  if (pathname.startsWith('/downloads')) {
+    return NextResponse.next();
+  }
+
   // ── app.geoafric.com subdomain routing ──────────────────────────────────
   // Root path → send to login; auth/* and dashboard/* fall through below
   if (isAppSubdomain && pathname === '/') {

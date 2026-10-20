@@ -12,7 +12,13 @@
     "complete": "إكمال الإعداد",
     "signOut": "تسجيل الخروج",
     "freePlan": "الخطة المجانية",
-    "comingSoon": "قريباً"
+    "comingSoon": "قريباً",
+    "downloadApp": "تحميل التطبيق",
+    "getApp": "احصل على التطبيق",
+    "androidApkNotice": "تطبيق أندرويد APK · نسخة iOS قريباً",
+    "registrationSuccess": "تم التسجيل بنجاح",
+    "registrationSuccessDesc": "مرحباً بك في GeoAfric! تم إنشاء حسابك بنجاح.",
+    "continueToDashboard": "المتابعة إلى لوحة التحكم"
   },
   "auth": {
     "signIn": "تسجيل الدخول",

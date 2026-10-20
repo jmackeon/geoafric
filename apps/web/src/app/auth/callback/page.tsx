@@ -10,7 +10,7 @@ const CALLBACK_TIMEOUT_MS = 12000;
 
 export default function AuthCallbackPage() {
   const router = useRouter();
-  const { setUser, setToken } = useAuthStore();
+  const { setUser, setToken, setRegistrationSuccessModal } = useAuthStore();
   const [timedOut, setTimedOut] = useState(false);
 
   useEffect(() => {
@@ -23,6 +23,10 @@ export default function AuthCallbackPage() {
 
     const handleCallback = async () => {
       try {
+        const urlObj = new URL(window.location.href);
+        const nextParam = urlObj.searchParams.get('next');
+        const isRegistered = urlObj.searchParams.get('registered') === '1';
+
         // Exchange the code in the URL for a session
         // This handles email confirmation links and OAuth redirects
         const { data, error } = await supabase.auth.exchangeCodeForSession(
@@ -46,7 +50,12 @@ export default function AuthCallbackPage() {
         });
         setToken(data.session.access_token);
 
-        // Check onboarding status
+        // If registered query param is present, activate registration success modal
+        if (isRegistered) {
+          setRegistrationSuccessModal(true);
+        }
+
+        // Check onboarding status in profile
         const { data: profile } = await supabase
           .from('profiles')
           .select('onboarded')
@@ -55,7 +64,15 @@ export default function AuthCallbackPage() {
 
         router.refresh();
         setTimeout(() => {
-          router.replace(profile?.onboarded ? '/dashboard' : '/onboarding');
+          let target = profile?.onboarded ? '/dashboard' : '/onboarding';
+          if (nextParam && nextParam.startsWith('/') && !nextParam.startsWith('/auth')) {
+            target = nextParam;
+          }
+          // Never fall back to '/'
+          if (target === '/') {
+            target = profile?.onboarded ? '/dashboard' : '/onboarding';
+          }
+          router.replace(target);
         }, 100);
 
       } catch (err) {

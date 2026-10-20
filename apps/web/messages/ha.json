@@ -12,7 +12,13 @@
     "complete": "Kammala Saiti",
     "signOut": "Fita",
     "freePlan": "Tsarin Kyauta",
-    "comingSoon": "Zuwa Nan Ba da Daɗewa ba"
+    "comingSoon": "Zuwa Nan Ba da Daɗewa ba",
+    "downloadApp": "Sauke Manhaja",
+    "getApp": "Sami Manhaja",
+    "androidApkNotice": "Android APK · iOS na nan tafe",
+    "registrationSuccess": "An yi rajista cikin nasara",
+    "registrationSuccessDesc": "Barka da zuwa GeoAfric! An ƙirƙiri asusunka.",
+    "continueToDashboard": "Ci gaba zuwa Dashboard"
   },
   "auth": {
     "signIn": "Shiga",

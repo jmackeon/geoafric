@@ -6,13 +6,18 @@ import Link from 'next/link';
 import { User, Mail, Lock, Phone, Eye, EyeOff, Loader2 } from 'lucide-react';
 import toast from 'react-hot-toast';
 import { getSupabaseClient } from '@/lib/supabase';
+import { RegistrationSuccessModal } from '@/components/ui/RegistrationSuccessModal';
+import { useAuthStore } from '@/lib/store/auth.store';
 
 export default function RegisterPage() {
   const router = useRouter();
+  const { setUser, setToken } = useAuthStore();
   const [form, setForm] = useState({ full_name: '', email: '', password: '', phone: '' });
   const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
   const [googleLoading, setGoogleLoading] = useState(false);
+  const [showSuccessModal, setShowSuccessModal] = useState(false);
+  const [continueTarget, setContinueTarget] = useState('/onboarding');
 
   const update = (field: string) => (e: React.ChangeEvent<HTMLInputElement>) =>
     setForm((f) => ({ ...f, [field]: e.target.value }));
@@ -37,11 +42,22 @@ export default function RegisterPage() {
       });
       if (error) throw error;
       if (data.user && !data.session) {
-        toast.success('Account created! Check your email to confirm before signing in.');
-        router.push('/auth/login');
+        toast.success('Registration successful! Please check your email to verify your account.');
+        setContinueTarget('/auth/login');
+        setShowSuccessModal(true);
       } else if (data.session) {
-        toast.success('Account created! Welcome to GeoAfric 🎉');
-        router.push('/onboarding');
+        const u = data.session.user;
+        setUser({
+          id: u.id,
+          email: u.email ?? '',
+          full_name: u.user_metadata?.full_name ?? form.full_name,
+          avatar_url: u.user_metadata?.avatar_url ?? null,
+          phone: u.user_metadata?.phone ?? form.phone ?? null,
+          provider: 'email',
+        });
+        setToken(data.session.access_token);
+        setContinueTarget('/onboarding');
+        setShowSuccessModal(true);
       }
     } catch (err: any) {
       const msg = err?.message ?? '';
@@ -63,7 +79,7 @@ export default function RegisterPage() {
       const { error } = await supabase.auth.signInWithOAuth({
         provider: 'google',
         options: {
-          redirectTo: `${origin}/auth/callback`,
+          redirectTo: `${origin}/auth/callback?registered=1&next=/onboarding`,
           queryParams: { access_type: 'offline', prompt: 'consent' },
         },
       });
@@ -309,6 +325,12 @@ export default function RegisterPage() {
           </div>
         </div>
       </div>
+
+      <RegistrationSuccessModal
+        isOpen={showSuccessModal}
+        onClose={() => setShowSuccessModal(false)}
+        continuePath={continueTarget}
+      />
     </>
   );
 }

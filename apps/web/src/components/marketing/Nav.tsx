@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { Menu, X } from 'lucide-react';
+import { DownloadAppButton } from '@/components/ui/DownloadAppButton';
 
 const NAV_LINKS = [
   { label: 'Product',      href: '/#features'   },
@@ -69,18 +70,19 @@ export function MarketingNav() {
 
         {/* Right CTAs — desktop */}
         <div className="hidden items-center gap-4 md:flex">
-          <a
-            href="https://app.geoafric.com/auth/login"
+          <DownloadAppButton variant="header" />
+          <Link
+            href="/auth/login"
             className="text-sm font-semibold text-white/80 transition-colors hover:text-white"
           >
             Sign in
-          </a>
-          <a
-            href="https://app.geoafric.com/auth/register"
-            className="rounded-xl bg-green px-5 py-2 text-sm font-bold text-white transition-opacity hover:opacity-90"
+          </Link>
+          <Link
+            href="/auth/register"
+            className="rounded-xl border border-white/20 px-4 py-2 text-sm font-bold text-white transition-all hover:bg-white/10"
           >
-            Get started
-          </a>
+            Sign up
+          </Link>
         </div>
 
         {/* Hamburger — mobile */}
@@ -108,18 +110,23 @@ export function MarketingNav() {
               </a>
             ))}
             <div className="flex flex-col gap-3 border-t border-white/10 pt-4">
-              <a
-                href="https://app.geoafric.com/auth/login"
-                className="text-sm font-semibold text-white/80 hover:text-white"
-              >
-                Sign in
-              </a>
-              <a
-                href="https://app.geoafric.com/auth/register"
-                className="rounded-xl bg-green px-4 py-3 text-center text-sm font-bold text-white"
-              >
-                Get started
-              </a>
+              <DownloadAppButton variant="mobileDrawer" />
+              <div className="flex items-center gap-3 pt-1">
+                <Link
+                  href="/auth/login"
+                  onClick={() => setMobileOpen(false)}
+                  className="flex-1 rounded-xl border border-white/20 py-2.5 text-center text-sm font-semibold text-white/80 hover:text-white hover:bg-white/5"
+                >
+                  Sign in
+                </Link>
+                <Link
+                  href="/auth/register"
+                  onClick={() => setMobileOpen(false)}
+                  className="flex-1 rounded-xl bg-gold/90 py-2.5 text-center text-sm font-bold text-[#080F20] hover:bg-gold"
+                >
+                  Sign up
+                </Link>
+              </div>
             </div>
           </div>
         </div>

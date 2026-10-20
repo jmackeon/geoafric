@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, Suspense } from 'react';
 import { useRouter } from 'next/navigation';
 import {
   User, Phone, Shield, MapPin,
@@ -10,6 +10,8 @@ import toast from 'react-hot-toast';
 import { getSupabaseClient } from '@/lib/supabase';
 import { usersApi } from '@/lib/api/client';
 import { useAuthStore } from '@/lib/store/auth.store';
+import { RegistrationSuccessModal } from '@/components/ui/RegistrationSuccessModal';
+import { useSearchParams } from 'next/navigation';
 
 const STEPS = [
   { id: 1, label: 'Profile',   icon: User,   title: 'Tell us about yourself',    sub: 'Help us personalise your experience' },
@@ -46,11 +48,14 @@ const inputStyle: React.CSSProperties = {
   background: 'white', outline: 'none', boxSizing: 'border-box', fontFamily: 'inherit',
 };
 
-export default function OnboardingPage() {
-  const router  = useRouter();
-  const { user, setUser } = useAuthStore();
-  const [step, setStep]   = useState(1);
-  const [form, setForm]   = useState<FormData>({
+function OnboardingContent() {
+  const router = useRouter();
+  const searchParams = useSearchParams();
+  const registeredParam = searchParams.get('registered');
+  const { user, setUser, setRegistrationSuccessModal } = useAuthStore();
+  const [step, setStep] = useState(1);
+  const [showCompletionModal, setShowCompletionModal] = useState(false);
+  const [form, setForm] = useState<FormData>({
     full_name: user?.full_name ?? '', phone: user?.phone ?? '',
     date_of_birth: '', gender: '', language: 'en',
     country: 'GH', city: '',
@@ -99,8 +104,8 @@ export default function OnboardingPage() {
       }
 
       setUser({ ...user!, full_name: form.full_name });
-      toast.success('Welcome to GeoAfric! 🌍');
-      window.location.replace('/dashboard');
+      toast.success('Profile setup complete! Welcome to GeoAfric! 🌍');
+      setShowCompletionModal(true);
     } catch (err: any) {
       toast.error(err.message ?? 'Something went wrong. Please try again.');
     } finally {
@@ -254,7 +259,34 @@ export default function OnboardingPage() {
 
         <style>{`@keyframes spin { from{transform:rotate(0deg)} to{transform:rotate(360deg)} }`}</style>
       </div>
+
+      <RegistrationSuccessModal
+        isOpen={showCompletionModal}
+        onClose={() => setShowCompletionModal(false)}
+        continuePath="/dashboard"
+      />
     </>
+  );
+}
+
+export default function OnboardingPage() {
+  return (
+    <Suspense
+      fallback={
+        <div style={{
+          minHeight: '100vh',
+          width: '100vw',
+          background: 'linear-gradient(135deg, #0D1B3D 0%, #0D2B5E 55%, #0D1B3D 100%)',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+        }}>
+          <Loader2 style={{ width: '32px', height: '32px', color: '#F5A623', animation: 'spin 1s linear infinite' }} />
+        </div>
+      }
+    >
+      <OnboardingContent />
+    </Suspense>
   );
 }
 

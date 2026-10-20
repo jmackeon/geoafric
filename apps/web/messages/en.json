@@ -12,7 +12,13 @@
     "complete": "Complete Setup",
     "signOut": "Sign out",
     "freePlan": "Free Plan",
-    "comingSoon": "Coming Soon"
+    "comingSoon": "Coming Soon",
+    "downloadApp": "Download App",
+    "getApp": "Get the App",
+    "androidApkNotice": "Android APK · iOS coming soon",
+    "registrationSuccess": "Registration successful",
+    "registrationSuccessDesc": "Welcome to GeoAfric! Your account has been created.",
+    "continueToDashboard": "Continue to Dashboard"
   },
   "auth": {
     "signIn": "Sign in",

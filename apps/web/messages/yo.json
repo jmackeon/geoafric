@@ -12,7 +12,13 @@
     "complete": "Pari Iṣeto",
     "signOut": "Jade",
     "freePlan": "Ètò Ọfẹ",
-    "comingSoon": "Ó Ń Bọ"
+    "comingSoon": "Ó Ń Bọ",
+    "downloadApp": "Gba Ohun Èlò",
+    "getApp": "Gba Ohun Èlò",
+    "androidApkNotice": "Android APK · iOS ń bọ̀ láìpẹ́",
+    "registrationSuccess": "Ìforúkọsílẹ̀ ti yọrí sí rere",
+    "registrationSuccessDesc": "Ẹ káàbọ̀ sí GeoAfric! A ti ṣẹ̀dá àkọọ́lẹ̀ rẹ.",
+    "continueToDashboard": "Tẹ̀síwájú sí Dashboard"
   },
   "auth": {
     "signIn": "Wọlé",

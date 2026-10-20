@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
+import { DownloadAppButton } from '@/components/ui/DownloadAppButton';
 
 export const metadata: Metadata = {
   title: 'About GeoAfric — Built to Keep African Families Safe & Connected',
@@ -347,12 +348,7 @@ export default function AboutPage() {
           </h2>
 
           <div className="mb-12 flex flex-wrap items-center justify-center gap-4">
-            <a
-              href="https://app.geoafric.com/auth/register"
-              className="rounded-xl bg-gold px-8 py-4 text-sm font-bold text-[#080F20] transition-opacity hover:opacity-90 shadow-glow-gold"
-            >
-              Download the app
-            </a>
+            <DownloadAppButton variant="primary" label="Download the app" />
             <Link
               href="/business"
               className="rounded-xl border border-white/20 px-8 py-4 text-sm font-bold text-white transition-colors hover:border-white/40 hover:bg-white/5"

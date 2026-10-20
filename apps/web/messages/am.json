@@ -12,7 +12,13 @@
     "complete": "ማዋቀር ጨርስ",
     "signOut": "ውጣ",
     "freePlan": "ነፃ ዕቅድ",
-    "comingSoon": "በቅርቡ ይመጣል"
+    "comingSoon": "በቅርቡ ይመጣል",
+    "downloadApp": "መተግበሪያውን ያውርዱ",
+    "getApp": "መተግበሪያውን ያግኙ",
+    "androidApkNotice": "አንድሮይድ ኤፒኬ · የiOS በቅርቡ ይመጣል",
+    "registrationSuccess": "ምዝገባ በተሳካ ሁኔታ ተጠናቋል",
+    "registrationSuccessDesc": "እንኳን ወደ GeoAfric በደህና መጡ! መለያዎ ተፈጥሯል።",
+    "continueToDashboard": "ወደ ዳሽቦርድ ቀጥል"
   },
   "auth": {
     "signIn": "ግባ",

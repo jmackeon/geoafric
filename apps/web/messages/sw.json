@@ -12,7 +12,13 @@
     "complete": "Kamilisha Usanidi",
     "signOut": "Ondoka",
     "freePlan": "Mpango wa Bure",
-    "comingSoon": "Inakuja Hivi Karibuni"
+    "comingSoon": "Inakuja Hivi Karibuni",
+    "downloadApp": "Pakua Programu",
+    "getApp": "Pata Programu",
+    "androidApkNotice": "Android APK · iOS inakuja hivi karibuni",
+    "registrationSuccess": "Usajili umefaulu",
+    "registrationSuccessDesc": "Karibu GeoAfric! Akaunti yako imeundwa.",
+    "continueToDashboard": "Endelea kwenye Dashibodi"
   },
   "auth": {
     "signIn": "Ingia",
