@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { Menu, X } from 'lucide-react';
 import { DownloadAppButton } from '@/components/ui/DownloadAppButton';
+import { useAuthStore } from '@/lib/store/auth.store';
 
 const NAV_LINKS = [
   { label: 'Product',      href: '/#features'   },
@@ -17,6 +18,7 @@ export function MarketingNav() {
   const [scrolled,   setScrolled]   = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const pathname = usePathname();
+  const user = useAuthStore(s => s.user);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 8);
@@ -71,18 +73,29 @@ export function MarketingNav() {
         {/* Right CTAs — desktop */}
         <div className="hidden items-center gap-4 md:flex">
           <DownloadAppButton variant="header" />
-          <Link
-            href="/auth/login"
-            className="text-sm font-semibold text-white/80 transition-colors hover:text-white"
-          >
-            Sign in
-          </Link>
-          <Link
-            href="/auth/register"
-            className="rounded-xl border border-white/20 px-4 py-2 text-sm font-bold text-white transition-all hover:bg-white/10"
-          >
-            Sign up
-          </Link>
+          {user ? (
+            <Link
+              href="/dashboard"
+              className="rounded-xl bg-gold px-5 py-2 text-sm font-bold text-[#080F20] shadow-glow-gold hover:opacity-90"
+            >
+              Open Web App →
+            </Link>
+          ) : (
+            <>
+              <Link
+                href="/auth/login"
+                className="text-sm font-semibold text-white/80 transition-colors hover:text-white"
+              >
+                Sign in
+              </Link>
+              <Link
+                href="/auth/register"
+                className="rounded-xl border border-white/20 px-4 py-2 text-sm font-bold text-white transition-all hover:bg-white/10"
+              >
+                Sign up
+              </Link>
+            </>
+          )}
         </div>
 
         {/* Hamburger — mobile */}
@@ -111,22 +124,32 @@ export function MarketingNav() {
             ))}
             <div className="flex flex-col gap-3 border-t border-white/10 pt-4">
               <DownloadAppButton variant="mobileDrawer" />
-              <div className="flex items-center gap-3 pt-1">
+              {user ? (
                 <Link
-                  href="/auth/login"
+                  href="/dashboard"
                   onClick={() => setMobileOpen(false)}
-                  className="flex-1 rounded-xl border border-white/20 py-2.5 text-center text-sm font-semibold text-white/80 hover:text-white hover:bg-white/5"
+                  className="w-full rounded-xl bg-gold py-3 text-center text-sm font-bold text-[#080F20]"
                 >
-                  Sign in
+                  Open Web App →
                 </Link>
-                <Link
-                  href="/auth/register"
-                  onClick={() => setMobileOpen(false)}
-                  className="flex-1 rounded-xl bg-gold/90 py-2.5 text-center text-sm font-bold text-[#080F20] hover:bg-gold"
-                >
-                  Sign up
-                </Link>
-              </div>
+              ) : (
+                <div className="flex items-center gap-3 pt-1">
+                  <Link
+                    href="/auth/login"
+                    onClick={() => setMobileOpen(false)}
+                    className="flex-1 rounded-xl border border-white/20 py-2.5 text-center text-sm font-semibold text-white/80 hover:text-white hover:bg-white/5"
+                  >
+                    Sign in
+                  </Link>
+                  <Link
+                    href="/auth/register"
+                    onClick={() => setMobileOpen(false)}
+                    className="flex-1 rounded-xl bg-gold/90 py-2.5 text-center text-sm font-bold text-[#080F20] hover:bg-gold"
+                  >
+                    Sign up
+                  </Link>
+                </div>
+              )}
             </div>
           </div>
         </div>

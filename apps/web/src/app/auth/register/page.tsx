@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { User, Mail, Lock, Phone, Eye, EyeOff, Loader2 } from 'lucide-react';
@@ -11,13 +11,19 @@ import { useAuthStore } from '@/lib/store/auth.store';
 
 export default function RegisterPage() {
   const router = useRouter();
-  const { setUser, setToken } = useAuthStore();
+  const { user, setUser, setToken } = useAuthStore();
   const [form, setForm] = useState({ full_name: '', email: '', password: '', phone: '' });
   const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
   const [googleLoading, setGoogleLoading] = useState(false);
   const [showSuccessModal, setShowSuccessModal] = useState(false);
   const [continueTarget, setContinueTarget] = useState('/onboarding');
+
+  useEffect(() => {
+    if (user && !showSuccessModal) {
+      router.replace('/onboarding');
+    }
+  }, [user, router, showSuccessModal]);
 
   const update = (field: string) => (e: React.ChangeEvent<HTMLInputElement>) =>
     setForm((f) => ({ ...f, [field]: e.target.value }));
@@ -75,11 +81,18 @@ export default function RegisterPage() {
         ? window.location.origin
         : (process.env.NEXT_PUBLIC_APP_URL || 'https://geoafric.com');
 
+      if (typeof window !== 'undefined') {
+        sessionStorage.setItem('oauth_mode', 'register');
+        document.cookie = 'ga_oauth_mode=register; path=/; max-age=600';
+        sessionStorage.setItem('oauth_registered', '1');
+        sessionStorage.setItem('oauth_next', '/onboarding');
+      }
+
       const supabase = getSupabaseClient();
       const { error } = await supabase.auth.signInWithOAuth({
         provider: 'google',
         options: {
-          redirectTo: `${origin}/auth/callback?registered=1&next=/onboarding`,
+          redirectTo: `${origin}/auth/callback`,
           queryParams: { access_type: 'offline', prompt: 'consent' },
         },
       });
@@ -185,7 +198,7 @@ export default function RegisterPage() {
                 <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/>
                 <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
               </svg>
-              {googleLoading ? 'Redirecting…' : 'Continue with Google'}
+              {googleLoading ? 'Redirecting…' : 'Sign up with Google'}
             </button>
 
             {/* Divider */}

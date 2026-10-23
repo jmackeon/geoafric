@@ -64,6 +64,20 @@ function OnboardingContent() {
   });
   const [loading, setLoading] = useState(false);
 
+  useEffect(() => {
+    const supabase = getSupabaseClient();
+    supabase.auth.getUser().then(({ data }) => {
+      const u = data.user;
+      if (u) {
+        setForm(f => ({
+          ...f,
+          full_name: f.full_name || u.user_metadata?.full_name || u.user_metadata?.name || '',
+          phone: f.phone || u.user_metadata?.phone || '',
+        }));
+      }
+    });
+  }, []);
+
   const update = (field: keyof FormData) =>
     (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) =>
       setForm(f => ({ ...f, [field]: e.target.value }));
@@ -75,16 +89,34 @@ function OnboardingContent() {
     setLoading(true);
     try {
       const supabase = getSupabaseClient();
+      let userId = user?.id;
+      if (!userId) {
+        const { data: authData } = await supabase.auth.getUser();
+        userId = authData.user?.id;
+      }
+      if (!userId) {
+        toast.error('Session expired. Please sign in again.');
+        router.push('/auth/login');
+        return;
+      }
 
-      // Update profile via API
-      await usersApi.updateProfile({
-        full_name: form.full_name,
-        phone:     form.phone,
-        language:  form.language,
-      });
+      // Update profile via API if backend is running (optional)
+      try {
+        await usersApi.updateProfile({
+          full_name: form.full_name,
+          phone:     form.phone,
+          language:  form.language,
+        });
+      } catch {
+        // Continue directly to Supabase if API is offline
+      }
 
-      // Update extended fields directly in Supabase
-      await supabase.from('profiles').update({
+      // Upsert full profile directly in Supabase (primary source of truth)
+      const { error: upsertErr } = await supabase.from('profiles').upsert({
+        id:              userId,
+        full_name:       form.full_name,
+        phone:           form.phone || null,
+        language:        form.language,
         date_of_birth:   form.date_of_birth || null,
         gender:          form.gender || null,
         country:         form.country,
@@ -94,16 +126,26 @@ function OnboardingContent() {
         onboarded:       true,
         onboarding_step: 4,
         updated_at:      new Date().toISOString(),
-      }).eq('id', user!.id);
+      }, { onConflict: 'id' });
+
+      if (upsertErr) {
+        console.warn('Profile upsert warning:', upsertErr.message);
+      }
 
       // Create family if requested
       if (!form.skip_family && form.family_name.trim()) {
-        await supabase.from('families').insert({
-          name: form.family_name.trim(), owner_id: user!.id,
-        });
+        try {
+          await supabase.from('families').insert({
+            name: form.family_name.trim(), owner_id: userId,
+          });
+        } catch {
+          // ignore family insert failure
+        }
       }
 
-      setUser({ ...user!, full_name: form.full_name });
+      if (user) {
+        setUser({ ...user, full_name: form.full_name });
+      }
       toast.success('Profile setup complete! Welcome to GeoAfric! 🌍');
       setShowCompletionModal(true);
     } catch (err: any) {

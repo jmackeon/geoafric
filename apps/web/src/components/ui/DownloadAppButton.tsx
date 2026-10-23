@@ -11,6 +11,9 @@ interface DownloadAppButtonProps {
   showNotice?: boolean;
 }
 
+const DEFAULT_APK_URL =
+  'https://expo.dev/artifacts/eas/vralxWg324YtcJoP86z299FLb7vRTqZki05Qsm6gdYE.apk';
+
 export function DownloadAppButton({
   variant = 'primary',
   className = '',
@@ -19,7 +22,8 @@ export function DownloadAppButton({
 }: DownloadAppButtonProps) {
   const { t } = useTranslation();
 
-  const apkUrl = process.env.NEXT_PUBLIC_APK_URL || '/downloads/geoafric.apk';
+  const apkUrl = process.env.NEXT_PUBLIC_APK_URL || DEFAULT_APK_URL;
+  const isExternal = apkUrl.startsWith('http');
   const buttonText = label || t('common.downloadApp');
   const noticeText = t('common.androidApkNotice');
 
@@ -43,6 +47,8 @@ export function DownloadAppButton({
       <a
         href={apkUrl}
         download="geoafric.apk"
+        target={isExternal ? '_blank' : undefined}
+        rel={isExternal ? 'noopener noreferrer' : undefined}
         className={`${baseStyles} ${className}`.trim()}
         aria-label={buttonText}
       >

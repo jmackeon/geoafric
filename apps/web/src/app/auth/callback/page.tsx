@@ -24,60 +24,108 @@ export default function AuthCallbackPage() {
     const handleCallback = async () => {
       try {
         const urlObj = new URL(window.location.href);
-        const nextParam = urlObj.searchParams.get('next');
-        const isRegistered = urlObj.searchParams.get('registered') === '1';
+        const code = urlObj.searchParams.get('code');
+        const cookieMode = typeof document !== 'undefined'
+          ? document.cookie.split('; ').find(row => row.startsWith('ga_oauth_mode='))?.split('=')[1]
+          : null;
+        const storedMode = typeof window !== 'undefined' ? sessionStorage.getItem('oauth_mode') : null;
+        const oauthMode = storedMode || cookieMode || 'login';
+
+        const storedNext = typeof window !== 'undefined' ? sessionStorage.getItem('oauth_next') : null;
+        const storedReg  = typeof window !== 'undefined' ? sessionStorage.getItem('oauth_registered') : null;
+        const nextParam = urlObj.searchParams.get('next') || storedNext;
+        const isRegisteredFlag = urlObj.searchParams.get('registered') === '1' || storedReg === '1' || oauthMode === 'register';
+
+        if (typeof window !== 'undefined') {
+          sessionStorage.removeItem('oauth_mode');
+          sessionStorage.removeItem('oauth_next');
+          sessionStorage.removeItem('oauth_registered');
+          document.cookie = 'ga_oauth_mode=; path=/; max-age=0';
+        }
+
+        let session = null;
 
         // Exchange the code in the URL for a session
-        // This handles email confirmation links and OAuth redirects
-        const { data, error } = await supabase.auth.exchangeCodeForSession(
-          window.location.href,
-        );
+        if (code) {
+          const { data, error } = await supabase.auth.exchangeCodeForSession(code);
+          if (error) {
+            console.error('Code exchange error:', error.message);
+          } else {
+            session = data.session;
+          }
+        }
 
-        if (error || !data.session) {
-          console.error('Callback error:', error?.message);
-          router.replace('/auth/login?error=callback_failed');
+        // Fallback: check if session was established via hash fragment or cookie
+        if (!session) {
+          const { data } = await supabase.auth.getSession();
+          session = data.session;
+        }
+
+        if (!session) {
+          console.error('Callback error: No session found');
+          window.location.replace('/auth/login?error=callback_failed');
           return;
         }
 
-        const u = data.session.user;
-        setUser({
-          id: u.id,
-          email: u.email ?? '',
-          full_name: u.user_metadata?.full_name ?? null,
-          avatar_url: u.user_metadata?.avatar_url ?? null,
-          phone: u.user_metadata?.phone ?? null,
-          provider: u.app_metadata?.provider ?? 'email',
-        });
-        setToken(data.session.access_token);
+        const u = session.user;
 
-        // If registered query param is present, activate registration success modal
-        if (isRegistered) {
+        // Check if user is registered in the database (profiles table)
+        const { data: profile } = await supabase
+          .from('profiles')
+          .select('id, full_name, onboarded')
+          .eq('id', u.id)
+          .maybeSingle();
+
+        const isRegisteredInDb = !!profile;
+
+        // If clicked from Sign In page, but account is NOT in the database:
+        if (oauthMode === 'login' && !isRegisteredInDb) {
+          await supabase.auth.signOut();
+          setUser(null);
+          setToken(null);
+          window.location.replace('/auth/login?error=not_registered');
+          return;
+        }
+
+        // If clicked from Register page, use Google details to register user into database
+        const fullName = profile?.full_name || u.user_metadata?.full_name || u.user_metadata?.name || '';
+        const avatarUrl = u.user_metadata?.avatar_url || u.user_metadata?.picture || null;
+        let needsOnboarding = !profile?.onboarded;
+
+        if (oauthMode === 'register' || !isRegisteredInDb) {
+          await supabase.from('profiles').upsert({
+            id: u.id,
+            full_name: fullName,
+            avatar_url: avatarUrl,
+            onboarded: false,
+            updated_at: new Date().toISOString(),
+          }, { onConflict: 'id' });
+
+          needsOnboarding = true;
+          setRegistrationSuccessModal(true);
+        } else if (isRegisteredFlag) {
           setRegistrationSuccessModal(true);
         }
 
-        // Check onboarding status in profile
-        const { data: profile } = await supabase
-          .from('profiles')
-          .select('onboarded')
-          .eq('id', u.id)
-          .single();
+        setUser({
+          id: u.id,
+          email: u.email ?? '',
+          full_name: fullName,
+          avatar_url: avatarUrl,
+          phone: u.user_metadata?.phone ?? null,
+          provider: 'google',
+        });
+        setToken(session.access_token);
 
-        router.refresh();
-        setTimeout(() => {
-          let target = profile?.onboarded ? '/dashboard' : '/onboarding';
-          if (nextParam && nextParam.startsWith('/') && !nextParam.startsWith('/auth')) {
-            target = nextParam;
-          }
-          // Never fall back to '/'
-          if (target === '/') {
-            target = profile?.onboarded ? '/dashboard' : '/onboarding';
-          }
-          router.replace(target);
-        }, 100);
+        const defaultTarget = needsOnboarding ? '/onboarding' : '/dashboard';
+        const target = nextParam && nextParam.startsWith('/') && !nextParam.startsWith('/auth')
+          ? nextParam
+          : defaultTarget;
 
+        window.location.replace(target);
       } catch (err) {
         console.error('Callback exception:', err);
-        router.replace('/auth/login');
+        window.location.replace('/auth/login');
       } finally {
         settled = true;
         clearTimeout(timeoutId);

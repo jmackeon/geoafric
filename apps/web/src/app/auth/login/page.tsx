@@ -1,10 +1,10 @@
 'use client';
 
-import { useState, Suspense } from 'react';
+import { useState, useEffect, Suspense } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { useSearchParams } from 'next/navigation';
-import { Mail, Lock, Eye, EyeOff, Loader2 } from 'lucide-react';
+import { Mail, Lock, Eye, EyeOff, Loader2, AlertCircle } from 'lucide-react';
 import toast from 'react-hot-toast';
 import { getSupabaseClient } from '@/lib/supabase';
 import { useAuthStore } from '@/lib/store/auth.store';
@@ -13,7 +13,36 @@ function LoginPageContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const nextParam = searchParams.get('next') || '';
-  const { setUser, setToken } = useAuthStore();
+  const errorParam = searchParams.get('error');
+  const { user, setUser, setToken } = useAuthStore();
+
+  useEffect(() => {
+    if (errorParam === 'not_registered') {
+      toast.error('You are not registered yet. Please sign up to create your account.');
+    }
+  }, [errorParam]);
+
+  useEffect(() => {
+    if (user && errorParam !== 'not_registered') {
+      const supabase = getSupabaseClient();
+      supabase
+        .from('profiles')
+        .select('onboarded')
+        .eq('id', user.id)
+        .maybeSingle()
+        .then(({ data: profile }) => {
+          const defaultDest = (!profile || !profile.onboarded) ? '/onboarding' : '/dashboard';
+          const destination = nextParam && nextParam.startsWith('/') && !nextParam.startsWith('/auth')
+            ? nextParam
+            : defaultDest;
+          router.replace(destination);
+        })
+        .catch(() => {
+          router.replace('/dashboard');
+        });
+    }
+  }, [user, router, nextParam, errorParam]);
+
   const [email, setEmail]               = useState('');
   const [password, setPassword]         = useState('');
   const [showPassword, setShowPassword] = useState(false);
@@ -38,7 +67,17 @@ function LoginPageContent() {
       });
       setToken(data.session.access_token);
       toast.success('Welcome back!');
-      const destination = nextParam && nextParam.startsWith('/') ? nextParam : '/dashboard';
+
+      const { data: profile } = await supabase
+        .from('profiles')
+        .select('onboarded')
+        .eq('id', u.id)
+        .maybeSingle();
+
+      const defaultDest = (!profile || !profile.onboarded) ? '/onboarding' : '/dashboard';
+      const destination = nextParam && nextParam.startsWith('/') && !nextParam.startsWith('/auth')
+        ? nextParam
+        : defaultDest;
       window.location.replace(destination);
     } catch (err: any) {
       const msg = err?.message ?? '';
@@ -57,15 +96,19 @@ function LoginPageContent() {
         ? window.location.origin
         : (process.env.NEXT_PUBLIC_APP_URL || 'https://geoafric.com');
 
-      const redirectPath = nextParam && nextParam.startsWith('/')
-        ? `/auth/callback?next=${encodeURIComponent(nextParam)}`
-        : '/auth/callback';
+      if (typeof window !== 'undefined') {
+        sessionStorage.setItem('oauth_mode', 'login');
+        document.cookie = 'ga_oauth_mode=login; path=/; max-age=600';
+        if (nextParam && nextParam.startsWith('/')) {
+          sessionStorage.setItem('oauth_next', nextParam);
+        }
+      }
 
       const supabase = getSupabaseClient();
       const { error } = await supabase.auth.signInWithOAuth({
         provider: 'google',
         options: {
-          redirectTo: `${origin}${redirectPath}`,
+          redirectTo: `${origin}/auth/callback`,
           queryParams: { access_type: 'offline', prompt: 'consent' },
         },
       });
@@ -136,6 +179,40 @@ function LoginPageContent() {
             background: 'white', borderRadius: '24px', padding: '32px',
             boxShadow: '0 25px 60px rgba(0,0,0,0.5)',
           }}>
+            {/* Account Not Registered Prompt Banner */}
+            {errorParam === 'not_registered' && (
+              <div style={{
+                padding: '14px 16px',
+                borderRadius: '14px',
+                background: '#FEF2F2',
+                border: '1.5px solid #FCA5A5',
+                marginBottom: '20px',
+                display: 'flex',
+                flexDirection: 'column',
+                gap: '6px',
+              }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '8px', color: '#B91C1C', fontWeight: 700, fontSize: '14px' }}>
+                  <AlertCircle style={{ width: '18px', height: '18px', flexShrink: 0 }} />
+                  <span>Account Not Registered</span>
+                </div>
+                <p style={{ margin: 0, fontSize: '13px', color: '#7F1D1D', lineHeight: 1.5 }}>
+                  You are not registered yet. Please click below to create your account with Google.
+                </p>
+                <Link
+                  href="/auth/register"
+                  style={{
+                    color: '#B45309',
+                    fontSize: '13px',
+                    fontWeight: 700,
+                    textDecoration: 'underline',
+                    marginTop: '2px',
+                  }}
+                >
+                  Create an account now →
+                </Link>
+              </div>
+            )}
+
             {/* Google SSO */}
             <button type="button" onClick={handleGoogleLogin} disabled={googleLoading}
               style={{ width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center',

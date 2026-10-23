@@ -12,14 +12,14 @@ export async function middleware(request: NextRequest) {
   }
 
   // ── app.geoafric.com subdomain routing ──────────────────────────────────
-  // Root path → send to login; auth/* and dashboard/* fall through below
   if (isAppSubdomain && pathname === '/') {
-    return NextResponse.redirect(new URL('/auth/login', request.url));
+    return NextResponse.redirect(new URL('/dashboard', request.url));
   }
 
-  // Skip Supabase auth overhead for non-protected routes (marketing pages, auth pages)
   const isProtected = pathname.startsWith('/dashboard') || pathname.startsWith('/onboarding');
-  if (!isProtected) {
+  const isAuthRoute = pathname === '/auth/login' || pathname === '/auth/register';
+
+  if (!isProtected && !isAuthRoute) {
     return NextResponse.next();
   }
 
@@ -56,22 +56,33 @@ export async function middleware(request: NextRequest) {
     return NextResponse.redirect(loginUrl);
   }
 
-  // Check onboarding for dashboard routes
-  if (user && pathname.startsWith('/dashboard')) {
+  if (user) {
+    let onboarded = false;
     try {
       const { data: profile } = await supabase
         .from('profiles')
         .select('onboarded')
         .eq('id', user.id)
-        .single();
-
-      if (profile && !profile.onboarded) {
-        const onboardUrl = request.nextUrl.clone();
-        onboardUrl.pathname = '/onboarding';
-        return NextResponse.redirect(onboardUrl);
-      }
+        .maybeSingle();
+      onboarded = !!profile?.onboarded;
     } catch {
-      // allow through if check fails
+      // If error fetching profile, allow through to avoid false lockouts
+      onboarded = true;
+    }
+
+    if (isAuthRoute) {
+      if (pathname === '/auth/login' && request.nextUrl.searchParams.get('error') === 'not_registered') {
+        return supabaseResponse;
+      }
+      return NextResponse.redirect(new URL(onboarded ? '/dashboard' : '/onboarding', request.url));
+    }
+
+    if (pathname.startsWith('/dashboard') && !onboarded) {
+      return NextResponse.redirect(new URL('/onboarding', request.url));
+    }
+
+    if (pathname === '/onboarding' && onboarded) {
+      return NextResponse.redirect(new URL('/dashboard', request.url));
     }
   }
 
