@@ -65,17 +65,21 @@ function OnboardingContent() {
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    const supabase = getSupabaseClient();
-    supabase.auth.getUser().then(({ data }) => {
-      const u = data.user;
-      if (u) {
-        setForm(f => ({
-          ...f,
-          full_name: f.full_name || u.user_metadata?.full_name || u.user_metadata?.name || '',
-          phone: f.phone || u.user_metadata?.phone || '',
-        }));
-      }
-    });
+    const loadUser = async () => {
+      try {
+        const supabase = getSupabaseClient();
+        const { data } = await supabase.auth.getUser();
+        const u = data?.user;
+        if (u) {
+          setForm(f => ({
+            ...f,
+            full_name: f.full_name || u.user_metadata?.full_name || u.user_metadata?.name || '',
+            phone: f.phone || u.user_metadata?.phone || '',
+          }));
+        }
+      } catch {}
+    };
+    loadUser();
   }, []);
 
   const update = (field: keyof FormData) =>

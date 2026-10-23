@@ -24,22 +24,25 @@ function LoginPageContent() {
 
   useEffect(() => {
     if (user && errorParam !== 'not_registered') {
-      const supabase = getSupabaseClient();
-      supabase
-        .from('profiles')
-        .select('onboarded')
-        .eq('id', user.id)
-        .maybeSingle()
-        .then(({ data: profile }) => {
+      const checkOnboardingAndRedirect = async () => {
+        try {
+          const supabase = getSupabaseClient();
+          const { data: profile } = await supabase
+            .from('profiles')
+            .select('onboarded')
+            .eq('id', user.id)
+            .maybeSingle();
+
           const defaultDest = (!profile || !profile.onboarded) ? '/onboarding' : '/dashboard';
           const destination = nextParam && nextParam.startsWith('/') && !nextParam.startsWith('/auth')
             ? nextParam
             : defaultDest;
           router.replace(destination);
-        })
-        .catch(() => {
+        } catch {
           router.replace('/dashboard');
-        });
+        }
+      };
+      checkOnboardingAndRedirect();
     }
   }, [user, router, nextParam, errorParam]);
 
